@@ -19,6 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "~@/assets/style/reset.scss";
     nav {
         display: flex;
         justify-content: space-around;
