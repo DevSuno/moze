@@ -1,14 +1,16 @@
 <template>
-    <div>
-        total
-    </div>
+<div>
+    <Nav/>
+</div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
-
-    @Component
+    import Nav from '@/components/Nav.vue';
+    @Component({
+        components: { Nav }
+    })
     export default class Total extends Vue {
 
     }
