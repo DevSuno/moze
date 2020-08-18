@@ -1,6 +1,9 @@
 <template>
     <div>
         <Nav/>
+        <svg  class="icon">
+            <use xlink:href="#add"/>
+        </svg>
     </div>
 
 </template>
@@ -8,9 +11,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
-    import Nav from '@/components/Nav.vue';
     @Component({
-        components: { Nav }
     })
     export default class Record extends Vue {
 
