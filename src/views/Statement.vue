@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <Nav/>
-    </div>
+    <Layout class-prefix="layout">
+    </Layout>
 </template>
 
 <script lang="ts">

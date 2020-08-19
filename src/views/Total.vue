@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <Topbar/>
-        <Money/>
-        <Statistics/>
-        <Type/>
 
-        <Nav/>
-    </div>
+        <Layout class-prefix="layout">
+            <Topbar/>
+            <Money/>
+            <Statistics/>
+            <Type/>
+        </Layout>
+
 </template>
 
 <script lang="ts">

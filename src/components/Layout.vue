@@ -1,7 +1,7 @@
 <template>
 
-    <div class="layout-wrapper">
-        <div class="content">
+    <div class="layout-wrapper" :class="classPrefix && `${classPrefix}-wrapper`">
+        <div class="content" :class="classPrefix && `${classPrefix}-content`">
             <slot/>
         </div>
         <Nav/>
@@ -10,12 +10,9 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
-
-    @Component
-    export default class Layout extends Vue {
-
+    export default  {
+        props: ['classPrefix'],
+        name:'Layout'
     }
 </script>
 
@@ -29,7 +26,7 @@
 
     .content {
 
-        overflow: hidden;
+        overflow: auto;
         flex-grow: 1;
     }
 </style>
