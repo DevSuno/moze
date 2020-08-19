@@ -3,11 +3,11 @@
         <router-link class="item" to="/total">
             <Icon name="total"/>
         </router-link>
-        |
+
         <router-link class="item" to="/record">
             <Icon name="add"/>
         </router-link>
-        |
+
         <router-link class="item" to="/statement">
             <Icon name="statement"/>
         </router-link>
@@ -30,12 +30,13 @@
     nav {
         display: flex;
         justify-content: space-around;
+        align-items: center;
+        height: 50px;
         line-height: 36px;
         font-size: 32px;
-        border: 1px solid red;
-
+        background: #23222e;
         > .item {
-            border: 1px solid red;
+
         }
     }
 </style>

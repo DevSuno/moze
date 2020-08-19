@@ -3,13 +3,7 @@
         <Topbar/>
         <Money/>
         <Statistics/>
-        <div>
-            <ol>
-                <li>余额</li>
-                <li>支出</li>
-                <li>收入</li>
-            </ol>
-        </div>
+        <Type/>
 
         <Nav/>
     </div>
@@ -21,9 +15,10 @@
     import Topbar from '@/components/Total/Topbar.vue';
     import Money from '@/components/Total/Money.vue';
     import Statistics from '@/components/Total/Statistics.vue';
+    import Type from '@/components/Total/Type.vue';
 
     @Component({
-        components: { Statistics, Money, Topbar }
+        components: { Type, Statistics, Money, Topbar }
     })
     export default class Total extends Vue {
 
