@@ -1,12 +1,6 @@
 <template>
     <div>
-        <ol>
-            <li>
-                <Icon name="eye"/>
-            </li>
-            <li><span>账户总览</span></li>
-            <li><span></span></li>
-        </ol>
+        <Topbar/>
         <div>
             <div>
                 <span>总额：</span>
@@ -27,13 +21,16 @@
 <script lang="ts">
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
+    import Topbar from '@/components/Total/Topbar.vue';
 
-    @Component({})
+    @Component({
+        components: { Topbar }
+    })
     export default class Total extends Vue {
 
     }
 </script>
 
 <style lang="scss" scoped>
-
+    @import "~@/assets/style/reset.scss";
 </style>
