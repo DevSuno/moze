@@ -19,11 +19,14 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "~@/assets/style/helper.scss";
 .topbar {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     > .icon{
         width: 32px;
         height: 20px;
@@ -31,7 +34,7 @@
 
     }
     > .text {
-        font-size: 24px;
+        font-size: 18px;
 
     }
     > .placeholder {
