@@ -2,10 +2,7 @@
     <div>
         <Topbar/>
         <Money/>
-        <div>
-            <span><Icon name="directory"/> 每周查看</span>
-            图表
-        </div>
+        <Statistics/>
         <div>
             <ol>
                 <li>余额</li>
@@ -23,9 +20,10 @@
     import { Component } from 'vue-property-decorator';
     import Topbar from '@/components/Total/Topbar.vue';
     import Money from '@/components/Total/Money.vue';
+    import Statistics from '@/components/Total/Statistics.vue';
 
     @Component({
-        components: { Money, Topbar }
+        components: { Statistics, Money, Topbar }
     })
     export default class Total extends Vue {
 
