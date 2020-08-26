@@ -1,0 +1,60 @@
+@import "~@/assets/style/helper.scss";
+.calendar {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100vw;
+
+  > .title {
+    font-size: 18px;
+    text-align: center;
+
+  }
+
+  > .week {
+    padding: 8px 8px;
+    display: flex;
+    min-width: 14.2857%;
+    justify-content: space-between;
+
+    > .dayOfWeek {
+      padding: 0px 8px;
+      text-align: center;
+    }
+
+  }
+
+  > .day {
+    display: flex;
+    max-width: 100vw;
+    min-width: 14.2857%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    > .month-class {
+      color: #a1a0ad;
+    }
+
+    > .todayBg {
+      background: #23222e;
+      border-radius: 50%;
+
+    }
+    > span {
+      height: 30px;
+      min-width: 30px;
+      margin: 4px 10px;
+      font-size: 12px;
+      color: #5c5b6b;
+      text-align: center;
+      line-height: 30px;
+    }
+    &selected {
+      border: 2px solid #6abfe0;
+
+    }
+
+
+  }
+
+}
