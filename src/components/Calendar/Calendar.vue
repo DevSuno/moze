@@ -54,7 +54,7 @@
         clickDay?: false;
 
         mounted() {
-            if (this.weekDay === (5 || 6 || 7)) {
+            if (this.weekDay === 5 || this.weekDay=== 6 || this.weekDay=== 7) {
                 this.monthDayNum = 42;
             } else {
                 this.monthDayNum = 35;
