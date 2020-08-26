@@ -8,7 +8,7 @@
             <span :class="[
                         {'month-class': isCurrentMonth(getDateHtml(day.year, day.month, day.day) )},
                         {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
-                        {handleDay: day.clickDay}
+                        {selected:day.year+'-'+ (day.month+1) +'-'+day.day===selectedDate}
                   ]"
                   :key="index"
                   @click="handleClickDay(day)"
@@ -52,6 +52,7 @@
         calendarList: [] = [];
 
         clickDay?: false;
+        selectedDate = this.time.year + '-' + (this.time.month + 1) + '-' + this.time.day
 
         mounted() {
             if (this.weekDay === 5 || this.weekDay=== 6 || this.weekDay=== 7) {
@@ -64,9 +65,9 @@
                     year: this.time.year,
                     month: this.time.month,
                     day: this.startTime + i,
-                    clickDay: false
                 });
             }
+            console.log(this.selectedDate);
         }
 
         // 是否是当前月
@@ -101,10 +102,11 @@
             this.$emit('handleNextMonth');
         }
 
-        handleClickDay(day: object) {
-            this.$forceUpdate();
-            this.$emit('handleClickDay', day);
-            this.$set(day, 'clickDay', true);
+        handleClickDay(day: {year: number; month: number; day: number}) {
+            // this.$forceUpdate();
+            // this.$emit('handleClickDay', day);
+            // this.$set(day, 'clickDay', true);
+            this.selectedDate = day.year+'-'+ (day.month+1) +'-'+day.day
         }
 
         currentMonthMaxDay = () => {

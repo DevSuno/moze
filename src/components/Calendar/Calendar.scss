@@ -19,7 +19,7 @@
     justify-content: space-between;
 
     > .dayOfWeek {
-      padding: 0px 8px;
+      padding: 8px 8px;
       text-align: center;
     }
 
@@ -32,20 +32,30 @@
     justify-content: space-between;
     flex-wrap: wrap;
     > span {
-      height: 30px;
+      max-height: 30px;
       min-width: 30px;
-      margin: 4px 10px;
+      margin: 3px 10px;
       font-size: 12px;
       color: #5c5b6b;
       text-align: center;
       line-height: 30px;
+      position: relative;
       &:nth-child(7n).month-class{
         color:$color-graygreen;
       }
       &:nth-child(7n-6).month-class{
         color:$color-grayred;
       }
-
+      &.selected::before{
+        position: absolute;
+        content: ' ';
+        width: 30px;
+        height: 30px;
+        left: -3.5px;
+        top: -3.5px;
+        border: 3px solid #70c0e1;
+        border-radius: 50%;
+      }
     }
     > .month-class {
       color: #a1a0ad;
@@ -56,10 +66,7 @@
       border-radius: 50%;
 
     }
-    &selected {
-      border: 2px solid #6abfe0;
 
-    }
 
 
   }
