@@ -4,19 +4,24 @@
         <div class="week">
             <span :key="index" class="dayOfWeek" v-for="(day,index) in week">{{"周"+day}}</span>
         </div>
-        <div class="day">
-            <span :class="[
+        <div class="month">
+                <span :class="[
                         {'month-class': isCurrentMonth(getDateHtml(day.year, day.month, day.day) )},
                         {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
                         {selected:day.year+'-'+ (day.month+1) +'-'+day.day===selectedDate}
-                  ]"
-                  :key="index"
-                  @click="handleClickDay(day)"
-                  v-for="(day,index) in calendarArr"
-            >
-                {{formatDate(day.day)}}
-            </span>
+                    ]"
+                      :key="index"
+                      @click="handleClickDay(day)"
+                      v-for="(day,index) in calendarArr">
+                    {{formatDate(day.day)}}
+                </span>
         </div>
+        <!--
+        <swiper :options="swiperOption" class="swiper">
+
+        </swiper>
+
+        -->
     </div>
 </template>
 
@@ -24,6 +29,7 @@
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
     import helper from '@/components/Calendar/helper';
+    import swiper2 from './Swiper.vue';
 
     @Component
     export default class Calendar extends Vue {
@@ -49,13 +55,13 @@
 
         //日历数组
         calendarArr: Array<object> = [];
-        calendarList: [] = [];
 
-        clickDay?: false;
-        selectedDate = this.time.year + '-' + (this.time.month + 1) + '-' + this.time.day
+
+        selectedDate = this.time.year + '-' + (this.time.month + 1) + '-' + this.time.day;
+
 
         mounted() {
-            if (this.weekDay === 5 || this.weekDay=== 6 || this.weekDay=== 7) {
+            if (this.weekDay === 5 || this.weekDay === 6 || this.weekDay === 7) {
                 this.monthDayNum = 42;
             } else {
                 this.monthDayNum = 35;
@@ -67,7 +73,7 @@
                     day: this.startTime + i,
                 });
             }
-            console.log(this.selectedDate);
+            /*console.log(this.touchStart(event))*/
         }
 
         // 是否是当前月
@@ -87,28 +93,39 @@
         }
 
         // 上一个月
-        handlePrevMonth() {
+        prevMonth() {
             const prevMonth = helper.getDate(this.time.year, this.time.month, 1);
             prevMonth.setMonth(prevMonth.getMonth() - 1);
             this.time = helper.getNewDate(prevMonth);
-            this.$emit('handlePrevMonth');
+            this.$emit('prevMonth');
         }
 
         // 下一个月
-        handleNextMonth() {
+        nextMonth() {
             const nextMonth = helper.getDate(this.time.year, this.time.month, 1);
             nextMonth.setMonth(nextMonth.getMonth() + 1);
             this.time = helper.getNewDate(nextMonth);
-            this.$emit('handleNextMonth');
+            this.$emit('nextMonth');
         }
 
-        handleClickDay(day: {year: number; month: number; day: number}) {
+        handleClickDay(day: { year: number; month: number; day: number }) {
             // this.$forceUpdate();
             // this.$emit('handleClickDay', day);
             // this.$set(day, 'clickDay', true);
-            this.selectedDate = day.year+'-'+ (day.month+1) +'-'+day.day
+            this.selectedDate = day.year + '-' + (day.month + 1) + '-' + day.day;
         }
 
+        // 监听手指开始滑动事件
+        /*        touchStart(event) {
+                    this.$emit('touchstart', event)
+
+                    this.touchStartX = event.touches[0].clientX
+                    this.touchStartY = event.touches[0].clientY
+                    this.touch = {
+                        x: 0,
+                        y: 0
+                    }
+                }*/
         currentMonthMaxDay = () => {
             const date = new Date();
             return new Date(date.getFullYear(), date.getMonth(), 0).getDate();

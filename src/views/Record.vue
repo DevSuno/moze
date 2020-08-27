@@ -1,6 +1,8 @@
 <template>
     <Layout class-prefix="layout">
         <Calendar/>
+        <Swiper2/>
+
     </Layout>
 
 </template>
@@ -9,9 +11,10 @@
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
     import Calendar from '@/components/Calendar/Calendar.vue';
+    import Swiper2 from '@/components/Calendar/Swiper.vue';
 
     @Component({
-        components: { Calendar }
+        components: { Swiper2,  Calendar }
     })
     export default class Record extends Vue {
 
