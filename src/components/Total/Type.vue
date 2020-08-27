@@ -19,6 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "~@/assets/style/helper.scss";
     .type {
         margin-top: 5px;
         font-size: 10px;
@@ -39,7 +40,7 @@
                 border-radius: 50%;
                 top: 5px;
                 left: -10px;
-                background: #a4789f;
+                background: $color-greypurple;
             }
         }
 
@@ -57,7 +58,7 @@
                 border-radius: 50%;
                 top: 5px;
                 left: -10px;
-                background: #ea5e69;
+                background: $color-lightred;
             }
         }
 
@@ -75,7 +76,7 @@
                 border-radius: 50%;
                 top: 5px;
                 left: -10px;
-                background: #a1d268;
+                background: $color-lightgreen;
             }
         }
     }

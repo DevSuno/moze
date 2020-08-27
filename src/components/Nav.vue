@@ -26,7 +26,7 @@
 
 <style lang="scss" scoped>
     @import "~@/assets/style/reset.scss";
-
+    @import "~@/assets/style/helper.scss";
     nav {
         display: flex;
         justify-content: space-around;
@@ -34,7 +34,7 @@
         height: 50px;
         line-height: 36px;
         font-size: 32px;
-        background: #23222e;
+        background: $navbg;
         > .item {
 
         }
