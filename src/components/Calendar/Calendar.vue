@@ -1,6 +1,10 @@
 <template>
     <div class="calendar">
-        <div class="title">{{this.time.year}}年{{formatDate(this.time.month +1)}}月{{this.time.day}}日</div>
+        <div class="title">
+            {{this.time.year}}年
+            {{formatDate(this.time.month +1)}}月
+            {{this.time.day}}日
+        </div>
         <div class="week">
             <span :key="index" class="dayOfWeek" v-for="(day,index) in week">{{"周"+day}}</span>
         </div>
@@ -134,7 +138,9 @@
         prevMonthEndDay = () => {
             const date = new Date();
             const currentMonthLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
-            const end = new Date(new Date().getFullYear(), new Date().getMonth() - 1, currentMonthLastDay);
+            const end = new Date(
+                new Date().getFullYear(), new Date().getMonth() - 1, currentMonthLastDay
+            );
             return end.getDate();
         };
 
