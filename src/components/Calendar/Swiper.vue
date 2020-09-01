@@ -1,13 +1,18 @@
 <template>
-        <swiper :options="swiperOption" class="swiper">
-            <swiper-slide>Slide 1</swiper-slide>
-            <swiper-slide>Slide 2</swiper-slide>
-            <swiper-slide>Slide 3</swiper-slide>
-            <swiper-slide>Slide 4</swiper-slide>
-            <swiper-slide>Slide 5</swiper-slide>
-            <swiper-slide>Slide 6</swiper-slide>
-            <swiper-slide>Slide 7</swiper-slide>
-        </swiper>
+    <swiper :autoUpdate="false" :options="swiperOption"
+            @slideChangeTransitionEnd="slideChangeTransitionEnd"
+            class="swiper">
+        <swiper-slide>
+            <SwiperItem :date="pages[0]"></SwiperItem>
+        </swiper-slide>
+        <swiper-slide>
+            <SwiperItem :date="pages[1]"></SwiperItem>
+        </swiper-slide>
+        <swiper-slide>
+            <SwiperItem :date="pages[2]"></SwiperItem>
+        </swiper-slide>
+
+    </swiper>
 </template>
 
 <script lang="ts">
@@ -15,9 +20,12 @@
     import { Component } from 'vue-property-decorator';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
+    import SwiperItem from '@/components/Calendar/SwiperItem.vue';
+    import helper from '@/components/Calendar/helper';
 
     @Component({
         components: {
+            SwiperItem,
             Swiper,
             SwiperSlide
         },
@@ -25,8 +33,32 @@
     export default class Swiper2 extends Vue {
         /*        name: 'swiper-example-3d-cube'*/
 
+        date: { year: number; month: number; day: number } = helper.getNewDate(new Date());
+        pages: array = [
+
+            {
+                year: this.date.year,
+                month: this.date.month - 2,
+            },
+            {
+                year: this.date.year,
+                month: this.date.month -1,
+            },
+            {
+                year: this.date.year,
+                month: this.date.month ,
+            },
+            {
+                year: this.date.year,
+                month: this.date.month + 1,
+            }
+
+        ];
+
         swiperOption: {} = {
+            initialSlide: 1,
             effect: 'cube',
+            loop: false,
             grabCursor: true,
             cubeEffect: {
                 shadow: true,
@@ -35,6 +67,25 @@
                 shadowScale: 0.94
             },
         };
+
+        slideChangeTransitionEnd(swiper: any) {
+            console.log(typeof (swiper));
+            if (swiper.swipeDirection === 'next') {
+                this.pages = [
+                    ...this.pages.slice(1),
+                    { year: this.pages[2].year, month: this.pages[2].month + 1 }
+                ];
+                swiper.slideTo(0, 0);
+            }
+            if (swiper.swipeDirection === 'prev') {
+                console.log(this.pages);
+                this.pages = [{ year: this.pages[0].year, month: this.pages[0].month - 1 },
+                    ...this.pages.slice(1)];
+                console.log(this.pages);
+                swiper.slideTo(3, 0);
+            }
+
+        }
     }
 </script>
 
