@@ -30,23 +30,19 @@
             SwiperSlide
         },
     })
-    export default class Swiper2 extends Vue {
+    export default class Swiperwrap extends Vue {
         /*        name: 'swiper-example-3d-cube'*/
 
         date: { year: number; month: number; day: number } = helper.getNewDate(new Date());
-        pages: array = [
+        pages: [{year: number;month: number},{year: number;month: number},{year: number;month: number}]= [
 
             {
-                year: this.date.year,
-                month: this.date.month - 2,
+                year:this.date.year,
+                month: this.date.month - 1,
             },
             {
                 year: this.date.year,
-                month: this.date.month -1,
-            },
-            {
-                year: this.date.year,
-                month: this.date.month ,
+                month: this.date.month,
             },
             {
                 year: this.date.year,
@@ -68,21 +64,21 @@
             },
         };
 
+
         slideChangeTransitionEnd(swiper: any) {
-            console.log(typeof (swiper));
             if (swiper.swipeDirection === 'next') {
-                this.pages = [
+                swiper.slideTo(1, 0);
+                this.pages  = [
                     ...this.pages.slice(1),
-                    { year: this.pages[2].year, month: this.pages[2].month + 1 }
+                    { year: this.pages[1].year, month: this.pages[1].month + 1 }
                 ];
-                swiper.slideTo(0, 0);
             }
             if (swiper.swipeDirection === 'prev') {
-                console.log(this.pages);
-                this.pages = [{ year: this.pages[0].year, month: this.pages[0].month - 1 },
-                    ...this.pages.slice(1)];
-                console.log(this.pages);
-                swiper.slideTo(3, 0);
+                swiper.slideTo(1, 0);
+                this.pages = [
+                    { year: this.pages[1].year, month: this.pages[1].month - 1 },
+                    ...this.pages.slice(0, 2)
+                ];
             }
 
         }
@@ -91,25 +87,22 @@
 
 
 <style lang="scss" scoped>
+    @import "~@/assets/style/helper.scss";
 
 
     .swiper {
-        width: 300px !important;
-        height: 200px;
+        width: 100vw;
         position: absolute;
         left: 50%;
         top: 70%;
-        margin-left: -150px;
-        margin-top: -150px;
-
+        margin-left: -190px;
+        margin-top: -350px;
         .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-weight: bold;
-            font-size: 12px * 2;
-            background-color: #2C8DFB;
+            background-color: $bg;
             background-position: center;
             background-size: cover;
             color: #fff;

@@ -1,14 +1,15 @@
 <template>
     <div class="calendar">
         <div class="title">
-            {{this.time.year}}年
-            {{formatDate(this.time.month +1)}}月
-            {{this.time.day}}日
+            {{time.year}}年
+            {{formatDate(time.month +1)}}月
+            {{formatDate(time.day)}}日
         </div>
         <div class="week">
             <span :key="index" class="dayOfWeek" v-for="(day,index) in week">{{"周"+day}}</span>
         </div>
-        <div class="month">
+<!--        <Swiperwrap/>
+       <div class="month">
                 <span :class="[
                         {'month-class': isCurrentMonth(getDateHtml(day.year, day.month, day.day) )},
                         {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
@@ -19,13 +20,8 @@
                       v-for="(day,index) in calendarArr">
                     {{formatDate(day.day)}}
                 </span>
-        </div>
-        <!--
-        <swiper :options="swiperOption" class="swiper">
+        </div>-->
 
-        </swiper>
-
-        -->
     </div>
 </template>
 
@@ -33,7 +29,6 @@
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
     import helper from '@/components/Calendar/helper';
-
     @Component
     export default class Calendar extends Vue {
 
@@ -60,7 +55,7 @@
         calendarArr: Array<object> = [];
 
         //选中日期
-        selectedDate = this.time.year + '-' + (this.time.month + 1) + '-' + this.time.day;
+/*        selectedDate = this.time.year + '-' + (this.time.month + 1) + '-' + this.time.day;*/
 
 
         mounted() {
@@ -76,9 +71,8 @@
                     day: this.startTime + i,
                 });
             }
-            /*console.log(this.touchStart(event))*/
         }
-
+/*
         // 是否是当前月
         isCurrentMonth(date: Date) {
             const { year: currentYear, month: currentMonth } =
@@ -117,9 +111,12 @@
             // this.$set(day, 'clickDay', true);
             this.selectedDate = day.year + '-' + (day.month + 1) + '-' + day.day;
         }
+        getDateHtml = (year: number, month: number, day: number) => {
+            return new Date(year, month, day);
+        };
 
-        // 监听手指开始滑动事件
-        /*        touchStart(event) {
+        //监听手指开始滑动事件
+                touchStart(event) {
                     this.$emit('touchstart', event)
 
                     this.touchStartX = event.touches[0].clientX
@@ -128,6 +125,7 @@
                         x: 0,
                         y: 0
                     }
+
                 }*/
         currentMonthMaxDay = () => {
             const date = new Date();
@@ -141,10 +139,6 @@
                 new Date().getFullYear(), new Date().getMonth() - 1, currentMonthLastDay
             );
             return end.getDate();
-        };
-
-        getDateHtml = (year: number, month: number, day: number) => {
-            return new Date(year, month, day);
         };
 
         formatDate = (date: number | string) => {

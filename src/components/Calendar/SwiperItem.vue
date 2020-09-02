@@ -1,14 +1,16 @@
 <template>
 
-        <div class="month">
-            {{formatDate(date.month)}}
-                <span :class="[
+    <div class="month">
+        <span :class="[
+                        {'month-class': isCurrentMonth(getDateHtml(day.year, day.month, day.day) )},
+                        {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
+                        {selected:day.year+'-'+ (day.month+1) +'-'+day.day === selectedDate}
                     ]"
-                      :key="index"
-                      v-for="(day,index) in calendarArr">
+              :key="index"
+              v-for="(day,index) in calendarArr">
                     {{formatDate(day.day)}}
                 </span>
-        </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -16,39 +18,26 @@
     import { Component, Prop } from 'vue-property-decorator';
     import helper from '@/components/Calendar/helper';
 
-
     @Component
     export default class SwiperItem extends Vue {
-        @Prop() date: object
+        @Prop() date!: { year: number; month: number; day: number };
+
+        //选中日期
+        selectedDate = this.date.year + '-' + (this.date.month + 1) + '-' + this.date.day;
 
         get dateObject() {
             const date = new Date(this.date.year, this.date.month, 1);
-            return  {
+            return {
                 year: date.getFullYear(),
-                month: date.getMonth() + 1,
+                month: date.getMonth(),
                 day: date.getDate()
-            }
+            };
         }
 
-        week: string[] = [
-            '日',
-            '一',
-            '二',
-            '三',
-            '四',
-            '五',
-            '六'
-        ];
-
-        //日历数组
-
-
-        //time: { year: number; month: number; day: number } = helper.getNewDate(new Date());
-
-
-        get currentFirstDay () {
+        get currentFirstDay() {
             return helper.getDate(this.dateObject.year, this.dateObject.month, 1);
         }
+
         get weekDay() {
             return this.currentFirstDay.getDay();
         }
@@ -58,8 +47,9 @@
         }
 
         get monthDayNum() {
-            return (this.weekDay === 5 || this.weekDay === 6 || this.weekDay === 7) ? 42: 35;
+            return (this.weekDay === 5 || this.weekDay === 6 || this.weekDay === 7) ? 42 : 35;
         }
+
         get calendarArr() {
             const arr = [];
             for (let i = 0; i < this.monthDayNum; i++) {
@@ -86,6 +76,10 @@
             return end.getDate();
         };
 
+        getDateHtml = (year: number, month: number, day: number) => {
+            return new Date(year, month, day);
+        };
+
         formatDate = (date: number | string) => {
             date = Number(date);
             if (date < 0) {
@@ -103,9 +97,74 @@
             }
             return date < 10 ? `0${date}` : date;
         };
+
+        // 是否是本月
+        isCurrentMonth(date: Date) {
+            const { year: currentYear, month: currentMonth } =
+                helper.getNewDate(helper.getDate(this.date.year, this.date.month, 1));
+            const { year, month } = helper.getNewDate(date);
+            return currentYear === year && currentMonth === month;
+        }
+
+        // 是否是今天
+        isCurrentDay(date: Date) {
+            const { year: currentYear, month: currentMonth, day: currentDay } =
+                helper.getNewDate(helper.getDate(this.date.year, this.date.month, this.date.day));
+            const { year, month, day } = helper.getNewDate(date);
+            return currentYear === year && currentMonth === month && currentDay === day;
+        }
     }
 </script>
 
 <style lang="scss" scoped>
-    @import "Calendar";
+    @import "~@/assets/style/helper.scss";
+
+    .month {
+        display: flex;
+        max-width: 100vw;
+        min-width: 14.2857%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        > span {
+            max-height: 30px;
+            min-width: 30px;
+            margin: 3px 10px;
+            font-size: 12px;
+            color: $color-gray;
+            text-align: center;
+            line-height: 30px;
+            position: relative;
+
+            &:nth-child(7n).month-class {
+                color: $color-graygreen;
+            }
+
+            &:nth-child(7n-6).month-class {
+                color: $color-grayred;
+            }
+
+            &.selected::before {
+                position: absolute;
+                content: ' ';
+                width: 30px;
+                height: 30px;
+                left: -3.5px;
+                top: -3.5px;
+                border: $color-blueborder;
+                border-radius: 50%;
+            }
+        }
+
+        > .month-class {
+            color: $color-normal;
+        }
+
+        > .todayBg {
+            background: $todayBg;
+            border-radius: 50%;
+
+        }
+    }
+
 </style>
