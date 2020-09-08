@@ -20,8 +20,8 @@
     import { Component } from 'vue-property-decorator';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
-    import SwiperItem from '@/components/Calendar/SwiperItem.vue';
-    import helper from '@/components/Calendar/helper';
+    import SwiperItem from '@/components/Record/Calendar/SwiperItem.vue';
+    import helper from '@/components/Record/Calendar/helper';
 
     @Component({
         components: {
@@ -34,19 +34,22 @@
         /*        name: 'swiper-example-3d-cube'*/
 
         date: { year: number; month: number; day: number } = helper.getNewDate(new Date());
-        pages: [{year: number;month: number},{year: number;month: number},{year: number;month: number}]= [
+        pages: [{year: number;month: number;day: number},{year: number;month: number;day: number},{year: number;month: number;day: number}]= [
 
             {
                 year:this.date.year,
                 month: this.date.month - 1,
+                day:this.date.day
             },
             {
                 year: this.date.year,
                 month: this.date.month,
+                day:this.date.day
             },
             {
                 year: this.date.year,
                 month: this.date.month + 1,
+                day:this.date.day
             }
 
         ];

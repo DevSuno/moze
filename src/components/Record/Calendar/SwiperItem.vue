@@ -1,11 +1,11 @@
 <template>
-
     <div class="month">
         <span :class="[
                         {'month-class': isCurrentMonth(getDateHtml(day.year, day.month, day.day) )},
                         {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
                         {selected:day.year+'-'+ (day.month+1) +'-'+day.day === selectedDate}
                     ]"
+              @click="handleClickDay(day)"
               :key="index"
               v-for="(day,index) in calendarArr">
                     {{formatDate(day.day)}}
@@ -16,7 +16,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import { Component, Prop } from 'vue-property-decorator';
-    import helper from '@/components/Calendar/helper';
+    import helper from '@/components/Record/Calendar/helper';
 
     @Component
     export default class SwiperItem extends Vue {
@@ -24,7 +24,6 @@
 
         //选中日期
         selectedDate = this.date.year + '-' + (this.date.month + 1) + '-' + this.date.day;
-
         get dateObject() {
             const date = new Date(this.date.year, this.date.month, 1);
             return {
@@ -103,6 +102,7 @@
             const { year: currentYear, month: currentMonth } =
                 helper.getNewDate(helper.getDate(this.date.year, this.date.month, 1));
             const { year, month } = helper.getNewDate(date);
+
             return currentYear === year && currentMonth === month;
         }
 
@@ -112,6 +112,10 @@
                 helper.getNewDate(helper.getDate(this.date.year, this.date.month, this.date.day));
             const { year, month, day } = helper.getNewDate(date);
             return currentYear === year && currentMonth === month && currentDay === day;
+        }
+        // 操作点击日期
+        handleClickDay(day: {year: number; month: number; day: number}) {
+            this.selectedDate = day.year+'-'+ (day.month+1) +'-'+day.day
         }
     }
 </script>

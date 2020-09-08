@@ -10,8 +10,8 @@
 <script lang="ts">
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
-    import Calendar from '@/components/Calendar/Calendar.vue';
-    import Swiperwrap from '@/components/Calendar/Swiper.vue';
+    import Calendar from '@/components/Record/Calendar/Calendar.vue';
+    import Swiperwrap from '@/components/Record/Calendar/Swiper.vue';
 
     @Component({
         components: { Swiperwrap,  Calendar }

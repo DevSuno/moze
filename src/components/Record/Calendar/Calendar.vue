@@ -28,7 +28,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import { Component } from 'vue-property-decorator';
-    import helper from '@/components/Calendar/helper';
+    import helper from '@/components/Record/Calendar/helper';
     @Component
     export default class Calendar extends Vue {
 
@@ -53,7 +53,7 @@
 
         //日历数组
         calendarArr: Array<object> = [];
-
+        
         //选中日期
 /*        selectedDate = this.time.year + '-' + (this.time.month + 1) + '-' + this.time.day;*/
 
