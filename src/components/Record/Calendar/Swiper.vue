@@ -17,7 +17,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, } from 'vue-property-decorator';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
     import SwiperItem from '@/components/Record/Calendar/SwiperItem.vue';
@@ -53,7 +53,6 @@
             }
 
         ];
-
         swiperOption: {} = {
             initialSlide: 1,
             effect: 'cube',
@@ -71,14 +70,14 @@
         slideChangeTransitionEnd(swiper: any) {
             if (swiper.swipeDirection === 'next') {
                 swiper.slideTo(1, 0);
-                this.pages  = [
+            return    this.pages  = [
                     ...this.pages.slice(1),
                     { year: this.pages[1].year, month: this.pages[1].month + 1 }
                 ];
             }
             if (swiper.swipeDirection === 'prev') {
                 swiper.slideTo(1, 0);
-                this.pages = [
+            return    this.pages = [
                     { year: this.pages[1].year, month: this.pages[1].month - 1 },
                     ...this.pages.slice(0, 2)
                 ];

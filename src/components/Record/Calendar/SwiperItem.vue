@@ -62,15 +62,15 @@
         }
 
         currentMonthMaxDay = () => {
-            const date = new Date();
-            return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+            const date = this.date;
+            return new Date(date.year, date.month + 1, 0).getDate();
         };
 
         prevMonthEndDay = () => {
-            const date = new Date();
-            const currentMonthLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+            const date = this.date;
+            const currentMonthLastDay = new Date(date.year, date.month + 1, 0).getDate();
             const end = new Date(
-                new Date().getFullYear(), new Date().getMonth() - 1, currentMonthLastDay
+                date.year, date.month, currentMonthLastDay
             );
             return end.getDate();
         };
@@ -86,10 +86,10 @@
             } else if (date === 0) {
                 date = this.prevMonthEndDay();
             } else if (date === 1) {
-                date = this.dateObject.month + 1 + '月';
+                date = this.dateObject.month + 1  + '月';
             } else if (date > this.currentMonthMaxDay()) {
                 if (date - this.currentMonthMaxDay() === 1) {
-                    date = this.dateObject.month + 2 + '月';
+                    date = (this.dateObject.month + 2)  + '月';
                 } else {
                     date = date - this.currentMonthMaxDay();
                 }
