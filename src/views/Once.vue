@@ -1,8 +1,6 @@
 <template>
     <Layout class-prefix="layout">
-        x
-    新增记录
-        √
+    <Topbar></Topbar>
 
 
         支出
@@ -35,9 +33,11 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
-
-    @Component
+    import { Component,} from 'vue-property-decorator';
+    import Topbar from '@/components/Once/Topbar.vue';
+    @Component({
+        components:{Topbar,}
+    })
     export default class Once extends Vue {
 
     }
