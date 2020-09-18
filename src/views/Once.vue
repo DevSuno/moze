@@ -1,11 +1,8 @@
 <template>
     <Layout class-prefix="layout">
-    <Topbar></Topbar>
-
-
-        支出
-        收入
-    icon
+        <Topbar></Topbar>
+        <Tabs></Tabs>
+        icon
         饮食
         交通
         娱乐
@@ -33,10 +30,12 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component,} from 'vue-property-decorator';
+    import { Component, } from 'vue-property-decorator';
     import Topbar from '@/components/Once/Topbar.vue';
+    import Tabs from '@/components/Once/Tabs.vue';
+
     @Component({
-        components:{Topbar,}
+        components: { Tabs, Topbar, }
     })
     export default class Once extends Vue {
 
