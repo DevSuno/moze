@@ -2,15 +2,8 @@
     <Layout class-prefix="layout">
         <Topbar></Topbar>
         <Tabs></Tabs>
-        icon
-        饮食
-        交通
-        娱乐
-        购物
-        个人
-        医疗
-        家居
-        家庭
+        <Ico/>
+
 
         薪水
         奖金
@@ -33,9 +26,10 @@
     import { Component, } from 'vue-property-decorator';
     import Topbar from '@/components/Once/Topbar.vue';
     import Tabs from '@/components/Once/Tabs.vue';
+    import Ico from '@/components/Once/Ico.vue';
 
     @Component({
-        components: { Tabs, Topbar, }
+        components: { Ico, Tabs, Topbar, }
     })
     export default class Once extends Vue {
 
