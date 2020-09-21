@@ -47,7 +47,7 @@
         > li {
             width: 50%;
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 0;
             position: relative;
 
             &.selected::after {
