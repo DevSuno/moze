@@ -3,14 +3,9 @@
         <Topbar></Topbar>
         <Tabs></Tabs>
         <Ico :payArr="payArr"
-             :earningArr="earningArr"
-        ></Ico>
+             :earningArr="earningArr"></Ico>
+        <Message/>
 
-        <div>金额</div>
-        <div>名称</div>
-        <div>年月日</div>
-        <div>时分</div>
-        <div>备注</div>
     </Layout>
 </template>
 
@@ -20,9 +15,10 @@
     import Topbar from '@/components/Once/Topbar.vue';
     import Tabs from '@/components/Once/Tabs.vue';
     import Ico from '@/components/Once/Ico.vue';
+    import Message from '@/components/Once/Message.vue';
 
     @Component({
-        components: { Ico, Tabs, Topbar, }
+        components: { Message, Ico, Tabs, Topbar, }
     })
 
     export default class Once extends Vue {

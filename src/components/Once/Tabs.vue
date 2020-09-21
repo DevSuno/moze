@@ -41,7 +41,7 @@
     @import "src/assets/style/helper.scss";
 
     .tabs {
-        margin-top: 20px;
+        margin-top: 10px;
         display: flex;
         flex-direction: row;
 

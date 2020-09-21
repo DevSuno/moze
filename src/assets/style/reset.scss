@@ -1,3 +1,5 @@
+@import "helper";
+
 * {
   margin: 0;
   padding: 0;
@@ -16,9 +18,35 @@ ul, ol {
   list-style: none;
 }
 
-button, input {
+input {
+  background: none;
+  outline: none;
+  border: 0;
+}
+
+::-webkit-input-placeholder {
+  color: $color-normal;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $color-normal;
+
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: $color-normal;
+
+}
+
+::-ms-input-placeholder {
+  color: $color-normal;
+
+}
+
+button {
   font: inherit;
 }
+
 :focus {
   outline: none;
 }
