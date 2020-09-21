@@ -4,15 +4,6 @@
         <Tabs></Tabs>
         <Ico/>
 
-
-        薪水
-        奖金
-        投资
-        还款
-        彩票
-        利息
-
-
         <div>金额</div>
         <div>名称</div>
         <div>年月日</div>
