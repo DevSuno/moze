@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="tabs">
-            <li :class="[{selected: tab.tab === selectedTab}] " :key="tab"
+            <li :class="[{selected: tab.tab === selectedTab}] " :key="tab.tab"
                 @click="changeSelectedTab(tab.tab)"
                 v-for="tab in tabs"
             >{{tab.tab}}
@@ -13,17 +13,25 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Inject } from 'vue-property-decorator';
 
     type Tab = [{ tab: string }, { tab: string }]
 
     @Component
 
     export default class Tabs extends Vue {
+        @Inject() eventBus!: Vue;
         selectedTab = '支出';
         tabs: Tab = [{ tab: '支出' }, { tab: '收入' }];
-        changeSelectedTab(tab: string){
-            this.selectedTab = tab
+
+        //初始
+        mounted(){
+            this.eventBus.$emit('updateSelectedTab',this.selectedTab)
+        }
+        //实时更新
+        changeSelectedTab(tab: string) {
+            this.selectedTab = tab;
+            this.eventBus.$emit('updateSelectedTab',this.selectedTab)
         }
     }
 </script>
