@@ -1,7 +1,7 @@
 <template>
     <div class="message">
         <div class="money">
-            <div class="number">{{output}}</div>
+            <div @click="showKeyboard" class="number">{{output}}</div>
         </div>
 
         <div class="onceTime">
@@ -26,11 +26,17 @@
     @Component
     export default class Message extends Vue {
         @Inject() eventBus!: Vue;
-
         output = '元';
+        isShowKeyboard = false;
 
         mounted() {
             this.eventBus.$emit('updateOutput', this.output);
+        }
+
+        showKeyboard() {
+            this.isShowKeyboard = true;
+            this.$emit('updateIsShowKeyboard', this.isShowKeyboard);
+
         }
 
         inputContent(event: MouseEvent) {

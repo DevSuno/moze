@@ -4,8 +4,8 @@
         <Tabs></Tabs>
         <Ico :payArr="payArr"
              :earningArr="earningArr"></Ico>
-        <Message />
-        <Keyboard :keyboardArr="keyboardArr"/>
+        <Message @updateIsShowKeyboard="showKeyboard"/>
+        <Keyboard :keyboardArr="keyboardArr" v-show="isShowKeyboard"/>
 
     </Layout>
 </template>
@@ -26,7 +26,10 @@
     export default class Once extends Vue {
         @Provide() eventBus = new Vue();
 
-
+        isShowKeyboard = false
+        showKeyboard( isShowKeyboard: boolean){
+            this.isShowKeyboard = isShowKeyboard
+        }
         payArr: {} = [
             {name:'eat',text:'饮食'},
             {name:'traffic',text:'交通'},
