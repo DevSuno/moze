@@ -3,26 +3,14 @@
         <div class="title">
             <span></span>
             <span>Moze安全键盘</span>
-            <span @click="offKeyboard" class="off">↓</span>
+            <span @click="offKeyboard">↓</span>
         </div>
         <div class="key">
-            <div class="number" @click="inputContent">
-
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>.</button>
-                <button>0</button>
-                <button>00</button>
+            <div @click="inputContent" class="number">
+                <button :key="button.text" v-for="button in buttonArr">{{button.text}}</button>
             </div>
             <div class="function">
-                <div :key="name.name" class="icon-warp" v-for="name in keyboardArr">
+                <div :key="name.name" class="icon-warp" v-for="name in keyboardIconArr">
                     <Icon :name="name.name" class="icon"></Icon>
                 </div>
                 <!--            <div>
@@ -46,21 +34,26 @@
     @Component
     export default class Keyboard extends Vue {
         @Inject() eventBus!: Vue;
-        @Prop() keyboardArr!: [{}];
+        @Prop() keyboardIconArr!: [{}];
+        @Prop() buttonArr!: [{}];
 
         output = '';
         offkeyboard = false;
+
         created() {
             this.eventBus.$on('updateOutput', (output: string) => {
                 this.output = output;
             });
         }
-        inputContent(){
-            return
+
+        inputContent() {
+            return;
         }
-        offKeyboard(){
+
+        offKeyboard() {
             this.$emit('updateOffKeyboard', this.offkeyboard);
         }
+
         remove() {
             if (this.output.length === 1) {
                 this.output = '0';
@@ -96,6 +89,7 @@
     }
 
     .keyboard {
+        max-width: 100%;
         position: absolute;
         bottom: 50px;
         display: flex;
@@ -109,9 +103,6 @@
             display: flex;
             justify-content: space-around;
             font-size: 20px;
-            .off {
-                border: 1px solid red;
-            }
         }
 
         .key {

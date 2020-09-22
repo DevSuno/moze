@@ -5,7 +5,10 @@
         <Ico :earningArr="earningArr"
              :payArr="payArr"></Ico>
         <Message @updateShowKeyboard="showKeyboard"/>
-        <Keyboard :keyboardArr="keyboardArr" @updateOffKeyboard="offKeyboard" v-show="isShowKeyboard"/>
+        <Keyboard :keyboardIconArr="keyboardIconArr"
+                  :buttonArr="buttonArr"
+                  @updateOffKeyboard="offKeyboard"
+                  v-show="isShowKeyboard"/>
 
     </Layout>
 </template>
@@ -43,7 +46,7 @@
             { name: 'interest', text: '利息' },
             { name: 'otherCopy', text: '其他' }
         ];
-        keyboardArr: {} = [
+        keyboardIconArr: {} = [
             { name: 'backspace' },
             { name: 'empty' },
             { name: 'true' },
