@@ -59,7 +59,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: 50px;
+        min-height: 50px;
         line-height: 33px;
         font-size: 33px;
         background: $navbg;

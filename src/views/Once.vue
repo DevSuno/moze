@@ -5,6 +5,7 @@
         <Ico :payArr="payArr"
              :earningArr="earningArr"></Ico>
         <Message/>
+        <Keyboard/>
 
     </Layout>
 </template>
@@ -16,9 +17,10 @@
     import Tabs from '@/components/Once/Tabs.vue';
     import Ico from '@/components/Once/Ico.vue';
     import Message from '@/components/Once/Message.vue';
+    import Keyboard from '@/components/Once/Keyboard.vue';
 
     @Component({
-        components: { Message, Ico, Tabs, Topbar, }
+        components: { Keyboard, Message, Ico, Tabs, Topbar, }
     })
 
     export default class Once extends Vue {
