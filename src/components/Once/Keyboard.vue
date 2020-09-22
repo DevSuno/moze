@@ -3,10 +3,11 @@
         <div class="title">
             <span></span>
             <span>Moze安全键盘</span>
-            ↓
+            <span @click="offKeyboard" class="off">↓</span>
         </div>
         <div class="key">
-            <div class="number">
+            <div class="number" @click="inputContent">
+
                 <button>1</button>
                 <button>2</button>
                 <button>3</button>
@@ -48,14 +49,18 @@
         @Prop() keyboardArr!: [{}];
 
         output = '';
-
+        offkeyboard = false;
         created() {
             this.eventBus.$on('updateOutput', (output: string) => {
                 this.output = output;
-                console.log(this.output);
             });
         }
-
+        inputContent(){
+            return
+        }
+        offKeyboard(){
+            this.$emit('updateOffKeyboard', this.offkeyboard);
+        }
         remove() {
             if (this.output.length === 1) {
                 this.output = '0';
@@ -104,6 +109,9 @@
             display: flex;
             justify-content: space-around;
             font-size: 20px;
+            .off {
+                border: 1px solid red;
+            }
         }
 
         .key {

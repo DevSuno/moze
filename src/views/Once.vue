@@ -2,10 +2,10 @@
     <Layout class-prefix="layout">
         <Topbar></Topbar>
         <Tabs></Tabs>
-        <Ico :payArr="payArr"
-             :earningArr="earningArr"></Ico>
-        <Message @updateIsShowKeyboard="showKeyboard"/>
-        <Keyboard :keyboardArr="keyboardArr" v-show="isShowKeyboard"/>
+        <Ico :earningArr="earningArr"
+             :payArr="payArr"></Ico>
+        <Message @updateShowKeyboard="showKeyboard"/>
+        <Keyboard :keyboardArr="keyboardArr" @updateOffKeyboard="offKeyboard" v-show="isShowKeyboard"/>
 
     </Layout>
 </template>
@@ -26,33 +26,51 @@
     export default class Once extends Vue {
         @Provide() eventBus = new Vue();
 
-        isShowKeyboard = false
-        showKeyboard( isShowKeyboard: boolean){
-            this.isShowKeyboard = isShowKeyboard
-        }
+        isShowKeyboard = false;
         payArr: {} = [
-            {name:'eat',text:'饮食'},
-            {name:'traffic',text:'交通'},
-            {name:'recreation',text:'娱乐'},
-            {name:'hospital',text:'医院'},
-            {name:'family',text:'家庭'},
-            {name:'shop',text:'购物'},
-            {name:'other',text: '其他'}
+            { name: 'eat', text: '饮食' },
+            { name: 'traffic', text: '交通' },
+            { name: 'recreation', text: '娱乐' },
+            { name: 'hospital', text: '医院' },
+            { name: 'family', text: '家庭' },
+            { name: 'shop', text: '购物' },
+            { name: 'other', text: '其他' }
+        ];
+        earningArr: {} = [
+            { name: 'wage', text: '工资' },
+            { name: 'bonus', text: '奖金' },
+            { name: 'repayment', text: '还款' },
+            { name: 'interest', text: '利息' },
+            { name: 'otherCopy', text: '其他' }
+        ];
+        keyboardArr: {} = [
+            { name: 'backspace' },
+            { name: 'empty' },
+            { name: 'true' },
+        ];
+        buttonArr: {} = [
+            { text: 1 },
+            { text: 2 },
+            { text: 3 },
+            { text: 4 },
+            { text: 5 },
+            { text: 6 },
+            { text: 7 },
+            { text: 8 },
+            { text: 9 },
+            { text: '.' },
+            { text: 0 },
+            { text: '00' },
+
         ];
 
-        earningArr: {} = [
-            {name:'wage',text:'工资'},
-            {name:'bonus',text:'奖金'},
-            {name:'repayment',text:'还款'},
-            {name:'interest',text:'利息'},
-            {name:'otherCopy',text: '其他'}
-        ]
+        offKeyboard(off: boolean) {
+            this.isShowKeyboard = off;
+        }
 
-        keyboardArr: {} =[
-            {name:'backspace'},
-            {name:'empty'},
-            {name:'true'},
-        ]
+        showKeyboard(showKeyboard: boolean) {
+            this.isShowKeyboard = showKeyboard;
+        }
 
     }
 </script>
