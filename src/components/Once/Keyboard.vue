@@ -21,9 +21,15 @@
                 <button>00</button>
             </div>
             <div class="function">
-                <button>回退</button>
-                <button>清空</button>
-                <button class="ok">完成</button>
+                <div>
+                    <Icon name="back" class="Icon"></Icon>
+                </div>
+                <div>
+                    <Icon name="empty" class="Icon"></Icon>
+                </div>
+                <div class="ok">
+                    <Icon  name="true" class="Icon"></Icon>
+                </div>
             </div>
 
         </div>
@@ -67,29 +73,50 @@
             margin: 10px 0;
             display: flex;
             justify-content: space-around;
+            font-size: 20px;
         }
 
         .key {
             display: flex;
             flex-direction: row;
+
             .number {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
+                max-width: 75vw;
+
                 button {
-                    margin: -0.5px -0.5px;
+                    margin: -0.5px 0 -0.5px -0.5px;
 
                 }
 
             }
 
             .function {
-                button {
+                min-width: 25vw;
+                display: flex;
+                flex-direction: column;
+                div {
                     width: 25.6vw;
+
+                    height: 42px;
+
+                    border: 0.3px solid $color-normal;
+                }
+                .Icon {
+                    margin: 0 auto;
+                    position: relative;
+                    left: 35%;
+                    top: 10%;
                 }
 
                 .ok {
                     height: 84px;
+                    .Icon {
+                        top: 30%;
+
+                    }
                 }
 
             }
