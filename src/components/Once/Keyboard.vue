@@ -21,29 +21,59 @@
                 <button>00</button>
             </div>
             <div class="function">
-                <div>
-                    <Icon name="back" class="Icon"></Icon>
+                <div :key="name.name" class="icon-warp" v-for="name in keyboardArr">
+                    <Icon :name="name.name" class="icon"></Icon>
                 </div>
-                <div>
-                    <Icon name="empty" class="Icon"></Icon>
-                </div>
-                <div class="ok">
-                    <Icon  name="true" class="Icon"></Icon>
-                </div>
+                <!--            <div>
+                                    <Icon class="Icon" name="back"></Icon>
+                                </div>
+                                <div>
+                                    <Icon class="Icon" name="empty"></Icon>
+                                </div>
+                                <div class="ok">
+                                    <Icon class="Icon" name="true"></Icon>
+                                </div>-->
             </div>
-
         </div>
-
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Inject, Prop } from 'vue-property-decorator';
 
     @Component
     export default class Keyboard extends Vue {
+        @Inject() eventBus!: Vue;
+        @Prop() keyboardArr!: [{}];
 
+        output = '';
+
+        created() {
+            this.eventBus.$on('updateOutput', (output: string) => {
+                this.output = output;
+                console.log(this.output);
+            });
+        }
+
+        remove() {
+            if (this.output.length === 1) {
+                this.output = '0';
+            } else {
+                this.output = this.output.slice(0, -1);
+            }
+        }
+
+        clear() {
+            this.output = '0';
+        }
+
+        ok() {
+            const number = parseFloat(this.output);
+            this.$emit('update:value', number);
+            this.$emit('submit', number);
+            this.output = '0';
+        }
     }
 </script>
 
@@ -97,24 +127,24 @@
                 min-width: 25vw;
                 display: flex;
                 flex-direction: column;
-                div {
+
+                .icon-warp {
                     width: 25.6vw;
-
                     height: 42px;
-
                     border: 0.3px solid $color-normal;
-                }
-                .Icon {
-                    margin: 0 auto;
-                    position: relative;
-                    left: 35%;
-                    top: 10%;
+
+                    .icon {
+                        position: relative;
+                        left: 35%;
+                        top: -58%;
+                    }
                 }
 
-                .ok {
-                    height: 84px;
-                    .Icon {
-                        top: 30%;
+                :last-child {
+                    min-height: 84px;
+
+                    .icon {
+                        top: 0;
 
                     }
                 }

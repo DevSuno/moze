@@ -1,9 +1,7 @@
 <template>
     <div class="message">
         <div class="money">
-            <label class="label">
-                <input class="number" placeholder="金额">
-            </label>
+            <div class="number">{{output}}</div>
         </div>
 
         <div class="onceTime">
@@ -23,10 +21,37 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Inject } from 'vue-property-decorator';
 
     @Component
     export default class Message extends Vue {
+        @Inject() eventBus!: Vue;
+
+        output = '元';
+
+        mounted() {
+            this.eventBus.$emit('updateOutput', this.output);
+        }
+
+        inputContent(event: MouseEvent) {
+            const button = (event.target as HTMLButtonElement);
+            const input = button.textContent!;
+            if (this.output.length === 16) {
+                return;
+            }
+            if (this.output === '0') {
+                if ('0123456789'.indexOf(input) >= 0) {
+                    this.output = input;
+                } else {
+                    this.output += input;
+                }
+                return;
+            }
+            if (this.output.indexOf('.') >= 0 && input === '.') {
+                return;
+            }
+            this.output += input;
+        }
 
     }
 </script>
@@ -45,19 +70,18 @@
             flex-direction: row-reverse;
             margin-right: 20px;
 
-            label {
+
+            .number {
                 border: 1px solid $color-normal;
                 border-radius: 8px;
-
-                .number {
-                    width: 39.5vw;
-                    font-size: 18px;
-                    margin: 4px 0;
-                    text-align: right;
-                    padding: 0px 10px;
-                    color: $color-blueselected;
-                }
+                width: 39.5vw;
+                font-size: 18px;
+                margin: 4px 0;
+                text-align: right;
+                padding: 0px 10px;
+                color: $color-blueselected;
             }
+
         }
 
 

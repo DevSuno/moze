@@ -4,8 +4,8 @@
         <Tabs></Tabs>
         <Ico :payArr="payArr"
              :earningArr="earningArr"></Ico>
-        <Message/>
-        <Keyboard/>
+        <Message />
+        <Keyboard :keyboardArr="keyboardArr"/>
 
     </Layout>
 </template>
@@ -43,6 +43,12 @@
             {name:'repayment',text:'还款'},
             {name:'interest',text:'利息'},
             {name:'otherCopy',text: '其他'}
+        ]
+
+        keyboardArr: {} =[
+            {name:'backspace'},
+            {name:'empty'},
+            {name:'true'},
         ]
 
     }
