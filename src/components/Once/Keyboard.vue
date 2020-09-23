@@ -39,15 +39,32 @@
 
         output = '';
         offkeyboard = false;
-
         created() {
-            this.eventBus.$on('updateOutput', (output: string) => {
+            this.eventBus.$on('initOutput', (output: string) => {
                 this.output = output;
             });
         }
+        updateOutput(){
+            this.eventBus.$emit('updateOutput', this.output)
+        }
 
-        inputContent() {
-            return;
+        inputContent(event: MouseEvent) {
+            const button = (event.target as HTMLButtonElement);
+            const input = button.textContent!;
+            if (this.output.length === 10) { return; }
+            if (this.output === '0') {
+                if ('0123456789'.indexOf(input) >= 0) {
+                    this.output += input;
+                    this.updateOutput()
+                } else {
+                    this.output += input;
+                    this.updateOutput()
+                }
+                return;
+            }
+            if (this.output.indexOf('.') >= 0 && input === '.') {return;}
+            this.output += input;
+            this.updateOutput()
         }
 
         offKeyboard() {
