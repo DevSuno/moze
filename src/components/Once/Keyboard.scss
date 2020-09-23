@@ -1,0 +1,75 @@
+@import "src/assets/style/helper";
+
+button {
+  width: 25vw;
+  height: 42px;
+  background: darken($bg, 5%);
+  border: 0.3px solid $color-normal;
+  mso-border-shadow: no;
+  color: #ffffff;
+
+}
+
+.keyboard {
+  max-width: 100%;
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  background: darken($bg, 5%);
+  font-family: Consolas, monospace;
+  font-size: 28px;
+
+  .title {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+  }
+
+  .key {
+    display: flex;
+    flex-direction: row;
+
+    .number {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      max-width: 75vw;
+
+      button {
+        margin: -0.5px 0 -0.5px -0.5px;
+
+      }
+
+    }
+
+    .function {
+      min-width: 25vw;
+      display: flex;
+      flex-direction: column;
+
+      .icon-warp {
+        width: 25.6vw;
+        height: 42px;
+        border: 0.3px solid $color-normal;
+
+        .icon {
+          position: relative;
+          left: 35%;
+          top: 10%;
+        }
+      }
+
+      :nth-child(3) {
+        min-height: 84px;
+
+        .icon {
+          top: 30%;
+
+        }
+      }
+
+    }
+  }
+}

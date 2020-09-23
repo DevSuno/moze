@@ -6,22 +6,22 @@
             <span @click="offKeyboard">↓</span>
         </div>
         <div class="key">
-            <div @click="inputContent" class="number">
-                <button :key="button.text" v-for="button in buttonArr">{{button.text}}</button>
+            <div @click="inputContent"
+                 class="number">
+                <button :key="button.text"
+                        v-for="button in buttonArr">
+                    {{button.text}}
+                </button>
             </div>
             <div class="function">
-                <div :key="name.name" class="icon-warp" v-for="name in keyboardIconArr">
-                    <Icon :name="name.name" class="icon"></Icon>
+                <div :key="name.name"
+                     @click="matching(name.name)"
+                     class="icon-warp"
+                     v-for="name in keyboardIconArr">
+                    <Icon :name="name.name"
+                          class="icon">
+                    </Icon>
                 </div>
-                <!--            <div>
-                                    <Icon class="Icon" name="back"></Icon>
-                                </div>
-                                <div>
-                                    <Icon class="Icon" name="empty"></Icon>
-                                </div>
-                                <div class="ok">
-                                    <Icon class="Icon" name="true"></Icon>
-                                </div>-->
             </div>
         </div>
     </div>
@@ -39,133 +39,83 @@
 
         output = '';
         offkeyboard = false;
+
         created() {
             this.eventBus.$on('initOutput', (output: string) => {
                 this.output = output;
             });
         }
-        updateOutput(){
-            this.eventBus.$emit('updateOutput', this.output)
-        }
 
         inputContent(event: MouseEvent) {
             const button = (event.target as HTMLButtonElement);
-            const input = button.textContent!;
-            if (this.output.length === 10) { return; }
+            const input = button.textContent!.trim();
+            if (this.output.length === 10) {
+                return;
+            }
             if (this.output === '0') {
                 if ('0123456789'.indexOf(input) >= 0) {
-                    this.output += input;
-                    this.updateOutput()
+                    this.output = input;
+                    this.updateOutput();
                 } else {
                     this.output += input;
-                    this.updateOutput()
+                    this.updateOutput();
                 }
                 return;
             }
-            if (this.output.indexOf('.') >= 0 && input === '.') {return;}
-            this.output += input;
-            this.updateOutput()
+            if (this.output.indexOf('.') >= 0 && input === '.') {
+                return;
+            }
+            this.output+=input;
+            this.updateOutput();
+        }
+
+        matching(name: string) {
+            if (name === 'backspace') {
+                this.remove();
+            }
+            if (name === 'empty') {
+                this.clear()
+            }
+            if (name === 'true') {
+                this.ok()
+            }
+        }
+
+        remove() {
+            if (this.output.length === 1) {
+                this.output = '0';
+                this.updateOutput();
+            } else {
+                this.output = this.output.slice(0, -1);
+                this.updateOutput();
+            }
+        }
+
+        clear() {
+            this.output = '0';
+            this.updateOutput();
+        }
+
+        ok() {
+/*            const number = parseFloat(this.output);
+            this.$emit('update:value', number);
+            this.$emit('submit', number);
+            this.output = '0';*/
+            this.updateOutput();
+        }
+
+        updateOutput() {
+            this.eventBus.$emit('updateOutput', this.output);
         }
 
         offKeyboard() {
             this.$emit('updateOffKeyboard', this.offkeyboard);
         }
 
-        remove() {
-            if (this.output.length === 1) {
-                this.output = '0';
-            } else {
-                this.output = this.output.slice(0, -1);
-            }
-        }
 
-        clear() {
-            this.output = '0';
-        }
-
-        ok() {
-            const number = parseFloat(this.output);
-            this.$emit('update:value', number);
-            this.$emit('submit', number);
-            this.output = '0';
-        }
     }
 </script>
 
 <style lang="scss" scoped>
-    @import "src/assets/style/helper";
-
-    button {
-        width: 25vw;
-        height: 42px;
-        background: darken($bg, 5%);
-        border: 0.3px solid $color-normal;
-        mso-border-shadow: no;
-        color: #ffffff;
-
-    }
-
-    .keyboard {
-        max-width: 100%;
-        position: absolute;
-        bottom: 50px;
-        display: flex;
-        flex-direction: column;
-        background: darken($bg, 5%);
-        font-family: Consolas, monospace;
-        font-size: 28px;
-
-        .title {
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            font-size: 20px;
-        }
-
-        .key {
-            display: flex;
-            flex-direction: row;
-
-            .number {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                max-width: 75vw;
-
-                button {
-                    margin: -0.5px 0 -0.5px -0.5px;
-
-                }
-
-            }
-
-            .function {
-                min-width: 25vw;
-                display: flex;
-                flex-direction: column;
-
-                .icon-warp {
-                    width: 25.6vw;
-                    height: 42px;
-                    border: 0.3px solid $color-normal;
-
-                    .icon {
-                        position: relative;
-                        left: 35%;
-                        top: -58%;
-                    }
-                }
-
-                :last-child {
-                    min-height: 84px;
-
-                    .icon {
-                        top: 0;
-
-                    }
-                }
-
-            }
-        }
-    }
+    @import "Keyboard";
 </style>
