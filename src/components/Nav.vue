@@ -33,15 +33,10 @@
         }
 
         goOnce() {
-            console.log('11');
             this.$router.push({
                 name: 'Once',
                 params: {}
             });
-        }
-
-        text() {
-            console.log('11');
         }
 
         created() {

@@ -5,7 +5,7 @@
         </div>
 
         <div class="onceTime">
-            <div class="date">年月日</div>
+            <div class="date">{{selectedDate}}</div>
             <div class="time">时分</div>
         </div>
 
@@ -29,12 +29,14 @@
         output = '';
         isShowKeyboard = false;
 
-
         mounted() {
             this.eventBus.$emit('initOutput', this.output);
             this.eventBus.$on('updateOutput', (output: string) => {
                 this.output = output;
             });
+        }
+        get selectedDate (){
+            return this.$store.state.selectedDate
         }
 
         showKeyboard() {

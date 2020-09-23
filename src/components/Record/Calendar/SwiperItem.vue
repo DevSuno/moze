@@ -5,8 +5,8 @@
                         {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
                         {selected:day.year+'-'+ (day.month+1) +'-'+day.day === selectedDate}
                     ]"
-              @click="handleClickDay(day)"
               :key="index"
+              @click="handleClickDay(day)"
               v-for="(day,index) in calendarArr">
                     {{formatDate(day.day)}}
                 </span>
@@ -23,7 +23,10 @@
         @Prop() date!: { year: number; month: number; day: number };
 
         //选中日期
-        selectedDate = this.date.year + '-' + (this.date.month + 1) + '-' + this.date.day;
+        get selectedDate() {
+            return this.$store.state.selectedDate;
+        }
+
         get dateObject() {
             const date = new Date(this.date.year, this.date.month, 1);
             return {
@@ -86,10 +89,10 @@
             } else if (date === 0) {
                 date = this.prevMonthEndDay();
             } else if (date === 1) {
-                date = this.dateObject.month + 1  + '月';
+                date = this.dateObject.month + 1 + '月';
             } else if (date > this.currentMonthMaxDay()) {
                 if (date - this.currentMonthMaxDay() === 1) {
-                    date = (this.dateObject.month + 2)  + '月';
+                    date = (this.dateObject.month + 2) + '月';
                 } else {
                     date = date - this.currentMonthMaxDay();
                 }
@@ -113,9 +116,10 @@
             const { year, month, day } = helper.getNewDate(date);
             return currentYear === year && currentMonth === month && currentDay === day;
         }
+
         // 操作点击日期
-        handleClickDay(day: {year: number; month: number; day: number}) {
-            this.selectedDate = day.year+'-'+ (day.month+1) +'-'+day.day
+        handleClickDay(day: { year: number; month: number; day: number }) {
+            this.$store.commit('handleClickDay', day);
         }
     }
 </script>
