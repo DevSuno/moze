@@ -1,13 +1,20 @@
 <template>
     <Layout class-prefix="layout">
         <Topbar></Topbar>
-        <Tabs></Tabs>
+        <Tabs @selectedTab="selectedTab"
+        ></Tabs>
         <Ico :earningArr="earningArr"
-             :payArr="payArr"></Ico>
-        <Message @updateShowKeyboard="showKeyboard"/>
+             :payArr="payArr"
+             @updateSelectedIco="selectedIco"
+        ></Ico>
+        <Message
+                @updateOutput="userOutput"
+                @updateNote="userNote"
+                @updateShowKeyboard="showKeyboard"/>
         <Keyboard :buttonArr="buttonArr"
                   :keyboardIconArr="keyboardIconArr"
                   @updateOffKeyboard="offKeyboard"
+                  @update="save"
                   v-show="isShowKeyboard"/>
 
     </Layout>
@@ -30,6 +37,13 @@
         @Provide() eventBus = new Vue();
 
         isShowKeyboard = false;
+        recordList: recordList = {
+            selectedTag: '支出',
+            selectedIco: 'eat',
+            selectedDate: this.selectedDate,
+            output: '',
+            note: ''
+        };
         payArr: {} = [
             { name: 'eat', text: '饮食' },
             { name: 'traffic', text: '交通' },
@@ -66,6 +80,26 @@
             { text: '00' },
 
         ];
+
+        get selectedDate() {
+            return this.$store.state.selectedDate;
+        }
+
+        selectedIco(icoName: string) {
+            this.recordList.selectedIco = icoName;
+        }
+
+        selectedTab(tagName: string) {
+            this.recordList.selectedTag = tagName;
+        }
+
+        userOutput(output: string) {
+            this.recordList.output = output;
+        }
+
+        userNote(value: string) {
+            this.recordList.note = value;
+        }
 
         offKeyboard(off: boolean) {
             this.isShowKeyboard = off;

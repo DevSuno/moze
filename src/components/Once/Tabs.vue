@@ -33,6 +33,7 @@
         changeSelectedTab(tab: string) {
             this.selectedTab = tab;
             this.eventBus.$emit('updateSelectedTab', this.selectedTab);
+            this.$emit('selectedTab',this.selectedTab)
         }
     }
 </script>

@@ -9,5 +9,16 @@ type Date ={
 }
 
 type Pages = [
-    { year: number; month: number; day: number },{ year: number; month: number; day: number },{ year: number; month: number; day: number }
+    { year: number; month: number; day: number },
+    { year: number; month: number; day: number },
+    { year: number; month: number; day: number }
 ]
+
+type recordList = {
+    selectedTag: string;
+    selectedIco: string;
+    selectedDate: string;
+    output: string;
+    note: string;
+
+}

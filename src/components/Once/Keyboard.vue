@@ -97,11 +97,14 @@
         }
 
         ok() {
-/*            const number = parseFloat(this.output);
-            this.$emit('update:value', number);
+/*          const number = parseFloat(this.output);
+            this.$emit('update', number);
+            this.$emit('')
+            this.$emit()
             this.$emit('submit', number);
             this.output = '0';*/
             this.updateOutput();
+            this.$emit('update')
         }
 
         updateOutput() {

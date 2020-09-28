@@ -14,7 +14,9 @@
         <div class="note">
             <span class="text">#备注 /</span>
             <label>
-                <input class="content" placeholder="在这里输入备注">
+                <input class="content" placeholder="在这里输入备注"
+                v-model="note"
+                >
             </label>
 
         </div>
@@ -23,13 +25,19 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component, Inject } from 'vue-property-decorator';
+    import { Component, Inject, Watch } from 'vue-property-decorator';
 
     @Component
     export default class Message extends Vue {
         @Inject() eventBus!: Vue;
         output = '';
         isShowKeyboard = false;
+        note = '';
+
+        @Watch ('note')
+        watchNote(value: string){
+            this.$emit('updateNote',this.note)
+        }
 
         get selectedDate() {
             return this.$store.state.selectedDate;
@@ -43,6 +51,7 @@
             this.eventBus.$emit('initOutput', this.output);
             this.eventBus.$on('updateOutput', (output: string) => {
                 this.output = output;
+                this.$emit('updateOutput',output)
             });
         }
 

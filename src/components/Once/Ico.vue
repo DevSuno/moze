@@ -38,14 +38,16 @@
         @Inject() eventBus!: Vue;
 
         tab = '';
-        selectedIco = ' ';
+        selectedIco = '';
         created() {
             this.eventBus.$on('updateSelectedTab', (tab: string) => {
                 this.tab = tab;
             });
         }
         changeSelectedIco(name: string){
-           return  this.selectedIco = name
+            this.$emit('updateSelectedIco', name)
+           return  this.selectedIco = name;
+
         }
 
     }
