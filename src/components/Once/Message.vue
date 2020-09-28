@@ -5,7 +5,9 @@
         </div>
 
         <div class="onceTime">
-            <div class="date">{{selectedDate}}</div>
+            <router-link to="/record">
+                <div class="date">{{selectedDate}}</div>
+            </router-link>
             <div class="time">{{currentTime}}</div>
         </div>
 
@@ -29,18 +31,21 @@
         output = '';
         isShowKeyboard = false;
 
+        get selectedDate() {
+            return this.$store.state.selectedDate;
+        }
+
+        get currentTime() {
+            return this.$store.state.currentTime;
+        }
+
         mounted() {
             this.eventBus.$emit('initOutput', this.output);
             this.eventBus.$on('updateOutput', (output: string) => {
                 this.output = output;
             });
         }
-        get selectedDate (){
-            return this.$store.state.selectedDate
-        }
-        get currentTime (){
-            return this.$store.state.currentTime
-        }
+
         showKeyboard() {
             this.isShowKeyboard = true;
             this.$emit('updateShowKeyboard', this.isShowKeyboard);

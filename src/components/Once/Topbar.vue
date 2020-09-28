@@ -1,8 +1,10 @@
 <template>
     <div class="topbar">
-        <Icon name="back" class="icon"></Icon>
+        <router-link to="/record" >
+            <Icon class="icon" name="back"></Icon>
+        </router-link>
         <span class="text">新增记录</span>
-        <Icon name="true" class="icon"></Icon>
+        <Icon class="icon" name="true"></Icon>
 
     </div>
 </template>
@@ -25,11 +27,12 @@
         justify-content: space-around;
         align-items: center;
 
-        > .icon{
+        .icon {
             width: 32px;
             height: 24px;
 
         }
+
         > .text {
             font-size: 18px;
 
