@@ -9,7 +9,8 @@ const time = helper.getCurrentTime(new Date())
 export default new Vuex.Store({
   state: {
       selectedDate: date.year + '-' + (date.month + 1) + '-' + date.day,
-      currentTime: time.hours + ':' + time.minutes
+      currentTime: time.hours + ':' + time.minutes,
+      recordList:[]
   },
   mutations: {
       handleClickDay(state,day: {year: number; month: number; day: number}) {

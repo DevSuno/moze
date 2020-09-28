@@ -4,7 +4,7 @@
             <Icon class="icon" name="back"></Icon>
         </router-link>
         <span class="text">新增记录</span>
-        <Icon class="icon" name="true"></Icon>
+        <Icon class="icon" name="true" @click="ok"></Icon>
 
     </div>
 </template>
@@ -16,6 +16,9 @@
     @Component
     export default class Topbar extends Vue {
 
+        ok() {
+            this.$emit('update')
+        }
     }
 </script>
 

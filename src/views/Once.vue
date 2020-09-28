@@ -1,6 +1,6 @@
 <template>
     <Layout class-prefix="layout">
-        <Topbar></Topbar>
+        <Topbar @update="saveRecord"></Topbar>
         <Tabs @selectedTab="selectedTab"
         ></Tabs>
         <Ico :earningArr="earningArr"
@@ -14,7 +14,7 @@
         <Keyboard :buttonArr="buttonArr"
                   :keyboardIconArr="keyboardIconArr"
                   @updateOffKeyboard="offKeyboard"
-                  @update="save"
+                  @update="saveRecord"
                   v-show="isShowKeyboard"/>
 
     </Layout>
@@ -37,10 +37,11 @@
         @Provide() eventBus = new Vue();
 
         isShowKeyboard = false;
-        recordList: recordList = {
+        recordItem: recordItem = {
             selectedTag: '支出',
             selectedIco: 'eat',
             selectedDate: this.selectedDate,
+            currentTime: this.$store.state.currentTime,
             output: '',
             note: ''
         };
@@ -86,19 +87,19 @@
         }
 
         selectedIco(icoName: string) {
-            this.recordList.selectedIco = icoName;
+            this.recordItem.selectedIco = icoName;
         }
 
         selectedTab(tagName: string) {
-            this.recordList.selectedTag = tagName;
+            this.recordItem.selectedTag = tagName;
         }
 
         userOutput(output: string) {
-            this.recordList.output = output;
+            this.recordItem.output = output;
         }
 
         userNote(value: string) {
-            this.recordList.note = value;
+            this.recordItem.note = value;
         }
 
         offKeyboard(off: boolean) {
@@ -108,7 +109,18 @@
         showKeyboard(showKeyboard: boolean) {
             this.isShowKeyboard = showKeyboard;
         }
-
+        saveRecord(){
+            if(this.recordItem.selectedTag !== ''){
+                if (this.recordItem.selectedIco !== ''){
+                    if(this.recordItem.output !== ''){
+                        this.$store.state.recordList.push(this.recordItem)
+                        console.log(this.$store.state.recordList);
+                    }else {
+                        window.alert('请输入金额')
+                    }
+                }
+            }
+        }
     }
 </script>
 
