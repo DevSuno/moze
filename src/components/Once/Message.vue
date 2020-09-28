@@ -47,12 +47,17 @@
             return this.$store.state.currentTime;
         }
 
+
         mounted() {
             this.eventBus.$emit('initOutput', this.output);
             this.eventBus.$on('updateOutput', (output: string) => {
                 this.output = output;
                 this.$emit('updateOutput',output)
             });
+            this.eventBus.$on('reset',()=>{
+                this.output = ''
+                this.note = ''
+            })
         }
 
         showKeyboard() {

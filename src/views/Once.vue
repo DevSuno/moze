@@ -8,13 +8,13 @@
              @updateSelectedIco="selectedIco"
         ></Ico>
         <Message
-                @updateOutput="userOutput"
                 @updateNote="userNote"
+                @updateOutput="userOutput"
                 @updateShowKeyboard="showKeyboard"/>
         <Keyboard :buttonArr="buttonArr"
                   :keyboardIconArr="keyboardIconArr"
-                  @updateOffKeyboard="offKeyboard"
                   @update="saveRecord"
+                  @updateOffKeyboard="offKeyboard"
                   v-show="isShowKeyboard"/>
 
     </Layout>
@@ -109,14 +109,19 @@
         showKeyboard(showKeyboard: boolean) {
             this.isShowKeyboard = showKeyboard;
         }
-        saveRecord(){
-            if(this.recordItem.selectedTag !== ''){
-                if (this.recordItem.selectedIco !== ''){
-                    if(this.recordItem.output !== ''){
-                        this.$store.state.recordList.push(this.recordItem)
+
+        saveRecord() {
+            if (this.recordItem.selectedTag !== '') {
+                if (this.recordItem.selectedIco !== '') {
+                    if (this.recordItem.output !== '') {
+                        this.$store.state.recordList.push(this.recordItem);
+                        window.localStorage.setItem('recordList',
+                            JSON.stringify(this.$store.state.recordList));
+                        this.eventBus.$emit('reset')
+                        alert('已保存');
                         console.log(this.$store.state.recordList);
-                    }else {
-                        window.alert('请输入金额')
+                    } else {
+                        window.alert('请输入金额');
                     }
                 }
             }
