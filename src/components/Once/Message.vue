@@ -6,7 +6,7 @@
 
         <div class="onceTime">
             <div class="date">{{selectedDate}}</div>
-            <div class="time">时分</div>
+            <div class="time">{{currentTime}}</div>
         </div>
 
         <div class="note">
@@ -38,7 +38,9 @@
         get selectedDate (){
             return this.$store.state.selectedDate
         }
-
+        get currentTime (){
+            return this.$store.state.currentTime
+        }
         showKeyboard() {
             this.isShowKeyboard = true;
             this.$emit('updateShowKeyboard', this.isShowKeyboard);

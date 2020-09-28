@@ -4,6 +4,11 @@ const getNewDate = (date: Date) => {
     const day = date.getDate();
     return { year, month, day };
 };
+const getCurrentTime = (date: Date) => {
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    return {hours, minutes}
+}
 
 const getDate = (year: number, month: number, day: number) => {
     return new Date(year, month, day);
@@ -44,6 +49,7 @@ const chineseMonth = (month: number) => {
 };
 export default {
     getNewDate,
+    getCurrentTime,
     getDate,
     chineseMonth,
     week,
