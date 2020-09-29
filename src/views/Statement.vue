@@ -3,6 +3,7 @@
         <Topbar/>
         <Timestamp/>
         <Items/>
+        <Swiper2/>
     </Layout>
 </template>
 
@@ -12,9 +13,9 @@
     import Topbar from '@/components/Statement/Topbar.vue';
     import Timestamp from '@/components/Statement/Timestamp.vue';
     import Items from '@/components/Statement/Items.vue';
-
+    import Swiper2 from '@/components/Statement/Swiper/Swiper.vue'
     @Component({
-        components: {  Items, Timestamp, Topbar }
+        components: { Swiper2,  Items, Timestamp, Topbar }
     })
     export default class Statement extends Vue {
 
