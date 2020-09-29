@@ -1,9 +1,17 @@
 <template>
     <swiper :options="swiperOption" class="swiper">
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-        <swiper-slide>Slide 4</swiper-slide>
+        <swiper-slide>
+            <SwiperChild :data="this.recordList"></SwiperChild>
+        </swiper-slide>
+        <swiper-slide>
+            <SwiperChild :data="this.recordList"></SwiperChild>
+        </swiper-slide>
+        <swiper-slide>
+            <SwiperChild :data="this.recordList"></SwiperChild>
+        </swiper-slide>
+        <swiper-slide>
+            <SwiperChild :data="this.recordList"></SwiperChild>
+        </swiper-slide>
     </swiper>
 </template>
 
@@ -12,24 +20,67 @@
     import { Component } from 'vue-property-decorator';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
+    import SwiperOptions from '@/components/Statement/Swiper/SwiperOptions';
+    import SwiperChild from '@/components/Statement/Swiper/SwiperChild.vue';
+    import clone from '@/lib/clone';
+
     @Component({
         components: {
+            SwiperChild,
             Swiper,
             SwiperSlide
         },
     })
     export default class Swiper2 extends Vue {
-        swiperOption: {} = {
-            loop : true,
-            effect: 'cube',
-            grabCursor: false,
-            cubeEffect: {
-                shadow: true,
-                slideShadows: true,
-                shadowOffset: 20,
-                shadowScale: 0.94
-            },
-        };
+        swiperOption: {} = SwiperOptions;
+/*
+        要传四个参数
+        1. 按支出收入 => 总览 => recordList.selectedTag
+        2. 按时间排序 => 明细 => recordList.selectedDate
+        3. 按类别排序 => 类别 => recordList.selectedIco
+        4. 按金额排序 => 排行 => recordList.output
+
+        childPages:[]=[
+            {this.tagRecordList},
+            {this.dateRecordList},
+            {this.icoRecordList},
+            {this.outputRecordList}
+        ]
+*/
+
+        mounted() {
+            console.log(this.newRecordList);
+            console.log(this.tagRecordList);
+        }
+        get recordList() {
+            return this.$store.state.recordList;
+        }
+        get newRecordList (){
+            return clone(this.recordList)
+        }
+
+        get tagRecordList (){
+            return this.pay.concat(this.earning)
+        }
+        get pay(){
+            return this.newRecordList.filter((i: { selectedTag: string })=> i.selectedTag === '支出')
+        }
+        get earning(){
+            return this.newRecordList.filter((i: { selectedTag: string })=> i.selectedTag === '收入')
+        }
+        get dateRecordList (){
+            return this.newRecordList.sort((a: recordItem, b: recordItem) => {
+                return a.selectedDate > b.selectedDate?1: -1;
+            })
+        }
+
+        get icoRecordList (){
+            return ''
+        }
+        get outputRecordList (){
+            return ''
+        }
+
 
     }
 </script>
