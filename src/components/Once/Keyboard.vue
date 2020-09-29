@@ -99,10 +99,12 @@
         ok() {
             this.updateOutput();
             this.$emit('update')
+            this.output=''
         }
 
         updateOutput() {
             this.eventBus.$emit('updateOutput', this.output);
+
         }
 
         offKeyboard() {

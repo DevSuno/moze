@@ -28,6 +28,7 @@
     import Ico from '@/components/Once/Ico.vue';
     import Message from '@/components/Once/Message.vue';
     import Keyboard from '@/components/Once/Keyboard.vue';
+    import clone from '@/lib/clone';
 
     @Component({
         components: { Keyboard, Message, Ico, Tabs, Topbar, }
@@ -114,10 +115,11 @@
             if (this.recordItem.selectedTag !== '') {
                 if (this.recordItem.selectedIco !== '') {
                     if (this.recordItem.output !== '') {
-                        this.$store.state.recordList.push(this.recordItem);
+                        const newRecordItem = clone(this.recordItem);
+                        this.$store.commit('updateRecordList', newRecordItem);
                         window.localStorage.setItem('recordList',
                             JSON.stringify(this.$store.state.recordList));
-                        this.eventBus.$emit('reset')
+                        this.eventBus.$emit('reset');
                         alert('已保存');
                         console.log(this.$store.state.recordList);
                     } else {
