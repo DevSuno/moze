@@ -92,7 +92,7 @@
 
         get outputRecordList() {
             return this.newRecordList.sort((a: recordItem, b: recordItem) => {
-                return a.output > b.output ? 1 : -1;
+                return a.output > b.output ? -1 : 1;
             });
         }
     }

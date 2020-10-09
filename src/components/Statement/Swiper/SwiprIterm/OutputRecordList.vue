@@ -2,7 +2,12 @@
     <div class="">
         <div class="echarts"></div>
         <div class="content">
-            <h3 >排行、金额</h3>{{data}}
+            <p v-for="( sum, index ) in this.data.outputRecordList" :key="index">
+                {{sum.selectedDate}}
+                {{sum.output + '元'}}
+                {{sum.selectedTag}}
+                {{sum.note}}
+            </p>
         </div>
     </div>
 </template>
@@ -14,7 +19,9 @@
     @Component
     export default class OutputRecordList extends Vue {
         @Prop() data!: {};
-
+        mounted(){
+            console.log(this.data);
+        }
     }
 </script>
 
