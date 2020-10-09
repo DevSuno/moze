@@ -32,12 +32,8 @@
 
     @Component
     export default class TagRecordList extends Vue {
-        @Prop() data!: any;
+        @Prop() data!: {};
 
-        mounted(){
-            console.log(this.data.tagRecordList[0]);
-            console.log(this.data.tagRecordList[1]);
-        }
 
     }
 </script>
