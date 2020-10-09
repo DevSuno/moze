@@ -80,7 +80,7 @@
 
         get dateRecordList() {
             return this.newRecordList.sort((a: recordItem, b: recordItem) => {
-                return a.selectedDate > b.selectedDate ? -1 : 1;
+                return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
             });
         }
 

@@ -2,7 +2,14 @@
     <div class="">
         <div class="echarts"></div>
         <div class="content">
-            <h3 >明细、按时间排</h3>{{data}}
+            <h3 >明细、按时间排</h3>
+
+            <p v-for="( detail, index ) in this.data.dateRecordList" :key="index">
+                    {{detail.selectedDate}}
+                    {{detail.output + '元'}}
+                    {{detail.selectedTag}}
+                    {{detail.note}}
+            </p>
         </div>
     </div>
 </template>
