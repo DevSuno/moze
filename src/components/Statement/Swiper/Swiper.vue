@@ -39,18 +39,17 @@
         2. 按时间排序 => 明细 => recordList.selectedDate
         3. 按类别排序 => 类别 => recordList.selectedIco
         4. 按金额排序 => 排行 => recordList.output
-
-        childPages:[]=[
-            {this.tagRecordList},
-            {this.dateRecordList},
-            {this.icoRecordList},
-            {this.outputRecordList}
-        ]
 */
 
+        childPages: Record<string, any>=[
+            { tagRecordList : this.tagRecordList },
+            { dateRecordList : this.dateRecordList},
+            { icoRecordList : this.icoRecordList},
+            { outputRecordList : this.outputRecordList}
+        ]
+
         mounted() {
-            console.log(this.newRecordList);
-            console.log(this.tagRecordList);
+            console.log(this.childPages)
         }
         get recordList() {
             return this.$store.state.recordList;
@@ -75,13 +74,15 @@
         }
 
         get icoRecordList (){
-            return ''
+            return this.newRecordList.sort((a: recordItem, b: recordItem) => {
+                return a.selectedIco > b.selectedIco ? 1 : -1;
+            })
         }
         get outputRecordList (){
-            return ''
+            return this.newRecordList.sort((a: recordItem, b: recordItem) => {
+                return a.output > b.output ? 1 : -1;
+            })
         }
-
-
     }
 </script>
 
