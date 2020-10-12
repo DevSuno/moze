@@ -5,24 +5,33 @@
             <div class="earning">
                 <span class="earning-yuan"></span>
                 <span>收入</span>
-                <p v-for="(earning , index ) in this.data.tagRecordList[0] " :key="index">
-                    {{earning.selectedDate}}
-                    {{earning.output + '元'}}
-                    {{'总价' + earning.total + '元'}}
-                </p>
+                {{'总价' + this.data.tagRecordList[0][this.data.tagRecordList[0].length-1].total + '元'}}
+                <div :key="index" v-for="(earning , index ) in this.data.tagRecordList[0] ">
+                    <h3> {{earning.selectedDate}}</h3>
+                    <Icon :name="earning.selectedIco"></Icon>
+                    <p>
+                        {{earning.output + '元'}}
+                    </p>
+                </div>
+
             </div>
             <div class="pay">
                 <span class="pay-yuan"></span>
                 <span>支出</span>
-                <p v-for="( pay, index ) in this.data.tagRecordList[1] " :key="index">
-                    {{pay.selectedDate}}
-                    {{pay.output + '元'}}
-                    {{'总价' + pay.total + '元'}}
-                </p>
+                {{'总价' + this.data.tagRecordList[1][this.data.tagRecordList[1].length-1].total + '元'}}
+                <div :key="index" v-for="( pay, index ) in this.data.tagRecordList[1] ">
+                    <h3>{{pay.selectedDate}}</h3>
+                    <Icon :name="pay.selectedIco"></Icon>
+                    <p>
+                        {{pay.output + '元'}}
+                    </p>
+                </div>
+
+
             </div>
-<!--            <h3 v-for="(Tag,index) in data.tagRecordList" :key="index">
-                {{Tag}}
-            </h3>-->
+            <!--            <h3 v-for="(Tag,index) in data.tagRecordList" :key="index">
+                            {{Tag}}
+                        </h3>-->
 
         </div>
     </div>
@@ -35,7 +44,9 @@
     @Component
     export default class TagRecordList extends Vue {
         @Prop() data!: {};
-
+        mounted(){
+            console.log(this.data);
+        }
 
     }
 </script>
