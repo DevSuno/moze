@@ -112,16 +112,14 @@
 
 <style lang="scss" scoped>
     .swiper {
-        margin-top: 70px;
+        margin-top: 25px;
         width: 100vw;
 
         .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
             background-position: center;
-            border: 1px solid red;
             background-size: cover;
             color: #fff;
         }

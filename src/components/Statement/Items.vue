@@ -20,6 +20,7 @@
 <style lang="scss" scoped>
     @import "~@/assets/style/helper.scss";
     .items {
+        margin: 20px 0 20px 0;
         display: flex;
         flex-direction: row;
 
