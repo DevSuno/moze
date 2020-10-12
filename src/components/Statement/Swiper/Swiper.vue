@@ -48,7 +48,7 @@
         */
 
         childPages: Record<string, any> = [
-            { tagRecordList: [this.earning, this.pay] },
+            { tagRecordList: [this.earning, this.pay ,this.earningTotal,this.payTotal] },
             { dateRecordList: this.dateRecordList },
             { icoRecordList: this.icoRecordList },
             { outputRecordList: this.outputRecordList }
@@ -63,30 +63,30 @@
         }
 
         get pay() {
-            const arr = this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '支出')
+            return this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '支出')
                 .sort((a: any, b: any) => {
                         return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
                     }
                 );
-            const total = arr.reduce((sum: number, item: { output: string }) => {
+        }
+        get payTotal(){
+            return     this.pay.reduce((sum: number, item: { output: string }) => {
                 return sum + Number(item.output);
             }, 0);
-            arr.push({ total: total });
-
-            return arr;
         }
 
         get earning() {
-            const arr = this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '收入')
+            return this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '收入')
                 .sort((a: any, b: any) => {
                         return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
                     }
                 );
-            const  total = arr.reduce((sum: number, item: { output: string }) => {
+        }
+
+        get earningTotal() {
+            return this.earning.reduce((sum: number, item: { output: string }) => {
                 return sum + Number(item.output);
             }, 0);
-            arr.push({ total: total });
-            return arr
         }
 
         get dateRecordList() {

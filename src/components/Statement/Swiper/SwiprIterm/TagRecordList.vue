@@ -5,7 +5,7 @@
             <div class="earning">
                 <span class="earning-yuan"></span>
                 <span>收入</span>
-                {{'总价' + this.data.tagRecordList[0][this.data.tagRecordList[0].length-1].total + '元'}}
+                {{'总价' + this.data.tagRecordList[2] + '元'}}
                 <div :key="index" v-for="(earning , index ) in this.data.tagRecordList[0] ">
                     <h3> {{earning.selectedDate}}</h3>
                     <Icon :name="earning.selectedIco"></Icon>
@@ -18,7 +18,7 @@
             <div class="pay">
                 <span class="pay-yuan"></span>
                 <span>支出</span>
-                {{'总价' + this.data.tagRecordList[1][this.data.tagRecordList[1].length-1].total + '元'}}
+                {{'总价' + this.data.tagRecordList[3]+ '元'}}
                 <div :key="index" v-for="( pay, index ) in this.data.tagRecordList[1] ">
                     <h3>{{pay.selectedDate}}</h3>
                     <Icon :name="pay.selectedIco"></Icon>
