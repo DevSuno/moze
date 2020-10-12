@@ -46,7 +46,6 @@
 
     .dateRecordList {
         width: 100vw;
-        font-size: 14px;
 
         .content {
             margin-top: 20px;
