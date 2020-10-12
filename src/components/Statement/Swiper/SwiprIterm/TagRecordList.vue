@@ -8,6 +8,7 @@
                 <p v-for="(earning , index ) in this.data.tagRecordList[0] " :key="index">
                     {{earning.selectedDate}}
                     {{earning.output + '元'}}
+                    {{'总价' + earning.total + '元'}}
                 </p>
             </div>
             <div class="pay">
@@ -16,6 +17,7 @@
                 <p v-for="( pay, index ) in this.data.tagRecordList[1] " :key="index">
                     {{pay.selectedDate}}
                     {{pay.output + '元'}}
+                    {{'总价' + pay.total + '元'}}
                 </p>
             </div>
 <!--            <h3 v-for="(Tag,index) in data.tagRecordList" :key="index">

@@ -1,7 +1,6 @@
 <template>
     <Layout class-prefix="layout">
         <Topbar/>
-        <Timestamp/>
         <Items/>
         <Swiper2/>
     </Layout>

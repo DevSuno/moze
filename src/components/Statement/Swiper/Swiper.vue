@@ -63,19 +63,30 @@
         }
 
         get pay() {
-            return this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '支出')
+            const arr = this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '支出')
                 .sort((a: any, b: any) => {
                         return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
                     }
                 );
+            const total = arr.reduce((sum: number, item: { output: string }) => {
+                return sum + Number(item.output);
+            }, 0);
+            arr.push({ total: total });
+
+            return arr;
         }
 
         get earning() {
-            return this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '收入')
+            const arr = this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '收入')
                 .sort((a: any, b: any) => {
                         return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
                     }
                 );
+            const  total = arr.reduce((sum: number, item: { output: string }) => {
+                return sum + Number(item.output);
+            }, 0);
+            arr.push({ total: total });
+            return arr
         }
 
         get dateRecordList() {
@@ -101,7 +112,7 @@
 
 <style lang="scss" scoped>
     .swiper {
-        margin-top: 30px;
+        margin-top: 70px;
         width: 100vw;
 
         .swiper-slide {
