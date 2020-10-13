@@ -46,16 +46,12 @@
 
 <script lang="ts">
     import Vue from 'vue';
+    import echarts from 'echarts'
     import { Component, Prop } from 'vue-property-decorator';
 
     @Component
     export default class TagRecordList extends Vue {
         @Prop() data!: {};
-
-        mounted() {
-            console.log(this.data);
-        }
-
     }
 </script>
 
