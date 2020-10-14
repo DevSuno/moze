@@ -41,6 +41,7 @@
         recordItem: recordItem = {
             selectedTag: '支出',
             selectedIco: 'eat',
+            selectedText: '饮食',
             selectedDate: this.selectedDate,
             currentTime: this.$store.state.currentTime,
             output: '',

@@ -1,7 +1,7 @@
 <template>
     <swiper :options="swiperOption" class="swiper">
         <swiper-slide>
-            <TagRecordList :data="this.childPages[0]"></TagRecordList>
+            <TagRecordList :data="this.childPages[0]" :top="this.topRecordList"></TagRecordList>
         </swiper-slide>
         <swiper-slide>
             <DateRecordList :data="this.childPages[1]"></DateRecordList>
@@ -105,6 +105,10 @@
             return this.newRecordList.sort((a: recordItem, b: recordItem) => {
                 return a.output > b.output ? -1 : 1;
             });
+        }
+
+        get topRecordList (){
+            return this.outputRecordList.splice(0,3)
         }
     }
 </script>

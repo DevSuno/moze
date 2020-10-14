@@ -24,6 +24,7 @@ type recordList = [
 type recordItem = {
     selectedTag: string;
     selectedIco: string;
+    selectedText: string;
     selectedDate: string;
     currentTime: string;
     output: string;
