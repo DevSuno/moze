@@ -16,10 +16,16 @@
         <!--        <echarts :options="topOptions" class="total">
                 </echarts>-->
         <div class="content">
-            <div class="earning">
-                <h3 >Top &nbsp; &nbsp; 3</h3>
-                <div :key="top + '1'" class="data-wrapper"
+            <div class="top">
+                <h4>Top &nbsp; &nbsp; 3</h4>
+                <div :class="[  {pay : isPay(item)},
+                                {earning : isEarning(item)}]"
+                     :key="top + '1'"
+                     class="data-wrapper"
                      v-for="(item , top ) in this.top">
+                    <div class="text-wrapper">
+                        <p class="text"> {{item.selectedDate}}</p>
+                    </div>
                     <div class="data">
                         <Icon :name="item.selectedIco" class="icon"></Icon>
                         <div class="class">{{item.selectedText}}</div>
@@ -27,8 +33,11 @@
                         <div>{{'￥'+ item.output}}</div>
                     </div>
                 </div>
-                <h3 >收入 </h3>
-                <div :key="index + '2'" class="data-wrapper"
+            </div>
+            <div class="earning">
+                <h4>收 &nbsp; &nbsp;入 （按时间排）</h4>
+                <div :key="index + '2'"
+                     class="data-wrapper"
                      v-for="(earning , index ) in this.data.tagRecordList[0] ">
                     <div class="text-wrapper">
                         <p class="text"> {{earning.selectedDate}}</p>
@@ -44,7 +53,7 @@
                 </div>
             </div>
             <div class="pay">
-                <h3>支出</h3>
+                <h4>支&nbsp; &nbsp;出 （按时间排）</h4>
                 <div :key="index + '3'" class="data-wrapper"
                      v-for="( pay, index ) in this.data.tagRecordList[1] ">
                     <div class="text-wrapper">
@@ -181,6 +190,13 @@
             return {};
         }
 
+        isPay(output: any) {
+            return output.selectedTag === '支出';
+        }
+
+        isEarning(output: any) {
+            return output.selectedTag === '收入';
+        }
 
         mounted() {
             console.log('1');
@@ -196,6 +212,11 @@
     .tagRecordList {
         width: 100vw;
 
+        h4 {
+            margin: 10px 0 10px 20px;
+            color: #ffffff;
+        }
+
         .total {
             height: 80px;
         }
@@ -203,11 +224,19 @@
         .content {
             margin-top: 100px;
 
-            .earning {
-                color: $color-lightred;
+            .top {
 
                 .earningText {
                     font-size: 14px;
+                }
+
+                .pay {
+                    color: $color-lightred;
+                }
+
+                .earning {
+                    color: $color-lightgreen;
+
                 }
 
                 .data-wrapper {
@@ -215,6 +244,7 @@
 
                     .text-wrapper {
                         .text {
+                            margin: 3px 0 3px 20px;
                             color: $color-normal;
                         }
                     }
@@ -224,6 +254,7 @@
                         display: flex;
                         flex-direction: row;
                         justify-content: center;
+
                         .icon {
                             margin: 0 15px 0 20px;
                             width: 30px;
@@ -235,6 +266,7 @@
                             flex-grow: 1;
                             text-align: center;
                         }
+
                         .class {
                             margin-left: 5px;
                         }
@@ -243,54 +275,107 @@
                             margin: 0 20px 0 15px;
                             text-align: center;
                             line-height: 30px;
-
                         }
                     }
 
                 }
             }
 
-            .pay {
-                color: $color-lightgreen;
+        }
 
-                .payText {
-                    font-size: 14px;
+        .earning {
+            color: $color-lightgreen;
+
+            .earningText {
+                font-size: 14px;
+            }
+
+            .data-wrapper {
+                border-bottom: 0.5px solid gray;
+
+                .text-wrapper {
+                    .text {
+                        margin: 3px 0 3px 20px;
+                        color: $color-normal;
+                    }
                 }
 
-                .data-wrapper {
-                    border-bottom: 0.5px solid gray;
+                .data {
+                    margin: 6px 0 6px 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
 
-                    .text-wrapper {
-                        .text {
-                            color: $color-normal;
-                        }
+                    .icon {
+                        margin: 0 15px 0 20px;
+                        width: 30px;
+                        height: 30px;
+
                     }
 
-                    .data {
-                        margin: 6px 0 6px 0;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-
-                        .icon {
-                            margin: 0 15px 0 20px;
-                            width: 30px;
-                            height: 30px;
-                        }
-
-                        .note {
-                            flex-grow: 1;
-                            text-align: center;
-
-                        }
-
-                        div {
-                            margin: 0 20px 0 15px;
-                            text-align: center;
-                            line-height: 30px;
-                        }
+                    .note {
+                        flex-grow: 1;
+                        text-align: center;
                     }
 
+                    .class {
+                        margin-left: 5px;
+                    }
+
+                    div {
+                        margin: 0 20px 0 15px;
+                        text-align: center;
+                        line-height: 30px;
+                    }
+                }
+
+            }
+        }
+
+        .pay {
+            color: $color-lightred;
+
+            .payText {
+                font-size: 14px;
+            }
+
+            .data-wrapper {
+                border-bottom: 0.5px solid gray;
+
+                .text-wrapper {
+                    .text {
+                        margin: 3px 0 3px 20px;
+                        color: $color-normal;
+                    }
+                }
+
+                .data {
+                    margin: 6px 0 6px 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+
+                    .icon {
+                        margin: 0 15px 0 20px;
+                        width: 30px;
+                        height: 30px;
+
+                    }
+
+                    .note {
+                        flex-grow: 1;
+                        text-align: center;
+                    }
+
+                    .class {
+                        margin-left: 5px;
+                    }
+
+                    div {
+                        margin: 0 20px 0 15px;
+                        text-align: center;
+                        line-height: 30px;
+                    }
                 }
             }
         }
