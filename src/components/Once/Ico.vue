@@ -16,7 +16,8 @@
              class="earning"
              v-for="earning in earningArr"
              v-show="tab === '收入'"
-             @click="changeSelectedIco(earning.name)">
+             @click="changeSelectedIco(earning.name,earning.text)
+                                                    ">
             <Icon :name="earning.name"></Icon>
             <span class="text"
                   :class="[{selected: earning.name === selectedIco}]">
@@ -39,6 +40,7 @@
 
         tab = '';
         selectedIco = 'eat';
+        selectedText = '饮食'
         created() {
             this.eventBus.$on('updateSelectedTab', (tab: string) => {
                 this.tab = tab;
@@ -47,12 +49,13 @@
         mounted(){
             this.eventBus.$on('reset',()=>{
                 this.selectedIco = 'eat'
+                this.selectedIco = '饮食'
             })
         }
-        changeSelectedIco(name: string){
-            this.$emit('updateSelectedIco', name)
-           return  this.selectedIco = name;
-
+        changeSelectedIco(name: string,text: string){
+            this.$emit('updateSelectedIco', name, text)
+            this.selectedIco = name;
+            this.selectedText = text
         }
 
     }

@@ -88,8 +88,9 @@
             return this.$store.state.selectedDate;
         }
 
-        selectedIco(icoName: string) {
+        selectedIco(icoName: string,icoText: string) {
             this.recordItem.selectedIco = icoName;
+            this.recordItem.selectedText = icoText
         }
 
         selectedTab(tagName: string) {

@@ -98,6 +98,7 @@
 
         ok() {
             this.updateOutput();
+            this.offKeyboard();
             this.$emit('update')
             this.output=''
         }
