@@ -1,0 +1,128 @@
+@import "~@/assets/style/helper.scss";
+
+.dateRecordList {
+  width: 100vw;
+  h4 {
+    margin: 10px 0 10px 20px;
+    color: #ffffff;
+  }
+  .type {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #95949f;
+    text-align: center;
+
+    > .balance {
+      margin-left: 20px;
+      margin-right: 5px;
+      position: relative;
+      color: $color-greypurple;
+
+      > .balance-yuan {
+        position: absolute;
+        content: " ";
+        display: inline;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+        background: $color-greypurple;
+      }
+    }
+
+    > .pay {
+      margin-left: 20px;
+      margin-right: 5px;
+      position: relative;
+      color: $color-lightred;
+      > .pay-yuan {
+        position: absolute;
+        content: " ";
+        display: inline;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+        background: $color-lightred;
+      }
+    }
+
+    > .earning {
+      margin-left: 20px;
+      margin-right: 5px;
+      position: relative;
+      color: $color-lightgreen;
+      > .earning-yuan {
+        position: absolute;
+        content: " ";
+        display: inline;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+        background: $color-lightgreen;
+      }
+    }
+  }
+  .content {
+    margin-top: 20px;
+    .date {
+
+      .earningText {
+        font-size: 14px;
+      }
+
+      .pay {
+        color: $color-lightred;
+      }
+
+      .earning {
+        color: $color-lightgreen;
+
+      }
+
+      .data-wrapper {
+        border-bottom: 0.5px solid gray;
+
+        .text-wrapper {
+          .text {
+            margin: 3px 0 3px 20px;
+            color: $color-normal;
+          }
+        }
+
+        .data {
+          margin: 6px 0 6px 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .icon {
+            margin: 0 15px 0 20px;
+            width: 30px;
+            height: 30px;
+
+          }
+
+          .note {
+            flex-grow: 1;
+            text-align: center;
+          }
+
+          .class {
+            margin-left: 5px;
+          }
+
+          div {
+            margin: 0 20px 0 15px;
+            text-align: center;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
