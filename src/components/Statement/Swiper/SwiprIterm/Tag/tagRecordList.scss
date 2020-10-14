@@ -1,0 +1,171 @@
+@import "~@/assets/style/helper.scss";
+.tagRecordList {
+  width: 100vw;
+
+  h4 {
+    margin: 10px 0 10px 20px;
+    color: #ffffff;
+  }
+
+  .total {
+    height: 80px;
+  }
+
+  .content {
+
+    .top {
+
+      .earningText {
+        font-size: 14px;
+      }
+
+      .pay {
+        color: $color-lightred;
+      }
+
+      .earning {
+        color: $color-lightgreen;
+
+      }
+
+      .data-wrapper {
+        border-bottom: 0.5px solid gray;
+
+        .text-wrapper {
+          .text {
+            margin: 3px 0 3px 20px;
+            color: $color-normal;
+          }
+        }
+
+        .data {
+          margin: 6px 0 6px 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .icon {
+            margin: 0 15px 0 20px;
+            width: 30px;
+            height: 30px;
+
+          }
+
+          .note {
+            flex-grow: 1;
+            text-align: center;
+          }
+
+          .class {
+            margin-left: 5px;
+          }
+
+          div {
+            margin: 0 20px 0 15px;
+            text-align: center;
+            line-height: 30px;
+          }
+        }
+
+      }
+    }
+
+  }
+
+  .earning {
+    color: $color-lightgreen;
+
+    .earningText {
+      font-size: 14px;
+    }
+
+    .data-wrapper {
+      border-bottom: 0.5px solid gray;
+
+      .text-wrapper {
+        .text {
+          margin: 3px 0 3px 20px;
+          color: $color-normal;
+        }
+      }
+
+      .data {
+        margin: 6px 0 6px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .icon {
+          margin: 0 15px 0 20px;
+          width: 30px;
+          height: 30px;
+
+        }
+
+        .note {
+          flex-grow: 1;
+          text-align: center;
+        }
+
+        .class {
+          margin-left: 5px;
+        }
+
+        div {
+          margin: 0 20px 0 15px;
+          text-align: center;
+          line-height: 30px;
+        }
+      }
+
+    }
+  }
+
+  .pay {
+    color: $color-lightred;
+
+    .payText {
+      font-size: 14px;
+    }
+
+    .data-wrapper {
+      border-bottom: 0.5px solid gray;
+
+      .text-wrapper {
+        .text {
+          margin: 3px 0 3px 20px;
+          color: $color-normal;
+        }
+      }
+
+      .data {
+        margin: 6px 0 6px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .icon {
+          margin: 0 15px 0 20px;
+          width: 30px;
+          height: 30px;
+
+        }
+
+        .note {
+          flex-grow: 1;
+          text-align: center;
+        }
+
+        .class {
+          margin-left: 5px;
+        }
+
+        div {
+          margin: 0 20px 0 15px;
+          text-align: center;
+          line-height: 30px;
+        }
+      }
+    }
+  }
+}

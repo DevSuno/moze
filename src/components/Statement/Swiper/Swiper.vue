@@ -22,7 +22,7 @@
     import 'swiper/swiper-bundle.css';
     import SwiperOptions from '@/components/Statement/Swiper/SwiperOptions';
     import clone from '@/lib/clone';
-    import TagRecordList from '@/components/Statement/Swiper/SwiprIterm/TagRecordList.vue';
+    import TagRecordList from '@/components/Statement/Swiper/SwiprIterm/Tag/TagRecordList.vue';
     import DateRecordList from '@/components/Statement/Swiper/SwiprIterm/DateRecordList.vue';
     import IcoRecordList from '@/components/Statement/Swiper/SwiprIterm/IcoRecordList.vue';
     import OutputRecordList from '@/components/Statement/Swiper/SwiprIterm/OutputRecordList.vue';

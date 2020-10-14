@@ -2,19 +2,6 @@
     <div class="tagRecordList">
         <echarts :options="totalOptions" class="total">
         </echarts>
-        <!--        <echarts :options="chartOptions" class="">
-                </echarts>-->
-        <div>
-            <span class="earning-yuan"></span>
-            {{'收入' + this.data.tagRecordList[2] + '元'}}
-            <span class="pay-yuan"></span>
-            {{'支出' + this.data.tagRecordList[3] + '元'}}
-            {{'余额' + (this.data.tagRecordList[2] - this.data.tagRecordList[3]) + '元'}}
-        </div>
-
-
-        <!--        <echarts :options="topOptions" class="total">
-                </echarts>-->
         <div class="content">
             <div class="top">
                 <h4>Top &nbsp; &nbsp; 3</h4>
@@ -94,7 +81,6 @@
                         [this.data.tagRecordList[2], '收入'],
                         [this.data.tagRecordList[3], '支出'],
                         [(this.data.tagRecordList[2] - this.data.tagRecordList[3]), '余额'],
-
                     ]
                 },
                 grid: {
@@ -124,17 +110,10 @@
                     splitLine: { show: false },
                     axisLabel: {
                         margin: 10,
-                        //color:"#111",
                         color: function (params: any, index: any) {
                             const colorList = ['#9fd26a', '#ea5e69', '#a4789f'];
                             return colorList[index];
                         },
-                        /*                        textStyle:{
-                                                    color: function (params: any) {
-                                                        const colorList = ['#9fd26a', '#ea5e69', '#a4789f'];
-                                                        return colorList[params.dataIndex]
-                                                    }
-                                                }*/
                     },
                     axisTick: { //y轴刻度线
                         show: false
@@ -168,18 +147,17 @@
                                     },
                                 },
                                 /*
-                            随机显示
+                                随机显示
                                 color:function(d){
-                                 return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);
-                                 }
-
-                            定制显示（按顺序）*/
+                                    return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);
+                                }
+                                */
+                                 //定制显示（按顺序）
                                 color: function (params: any) {
                                     const colorList = ['#9fd26a', '#ea5e69', '#a4789f'];
                                     return colorList[params.dataIndex];
                                 }
                             },
-
                         },
                     }
                 ]
@@ -207,177 +185,5 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "~@/assets/style/helper.scss";
-
-    .tagRecordList {
-        width: 100vw;
-
-        h4 {
-            margin: 10px 0 10px 20px;
-            color: #ffffff;
-        }
-
-        .total {
-            height: 80px;
-        }
-
-        .content {
-            margin-top: 100px;
-
-            .top {
-
-                .earningText {
-                    font-size: 14px;
-                }
-
-                .pay {
-                    color: $color-lightred;
-                }
-
-                .earning {
-                    color: $color-lightgreen;
-
-                }
-
-                .data-wrapper {
-                    border-bottom: 0.5px solid gray;
-
-                    .text-wrapper {
-                        .text {
-                            margin: 3px 0 3px 20px;
-                            color: $color-normal;
-                        }
-                    }
-
-                    .data {
-                        margin: 6px 0 6px 0;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-
-                        .icon {
-                            margin: 0 15px 0 20px;
-                            width: 30px;
-                            height: 30px;
-
-                        }
-
-                        .note {
-                            flex-grow: 1;
-                            text-align: center;
-                        }
-
-                        .class {
-                            margin-left: 5px;
-                        }
-
-                        div {
-                            margin: 0 20px 0 15px;
-                            text-align: center;
-                            line-height: 30px;
-                        }
-                    }
-
-                }
-            }
-
-        }
-
-        .earning {
-            color: $color-lightgreen;
-
-            .earningText {
-                font-size: 14px;
-            }
-
-            .data-wrapper {
-                border-bottom: 0.5px solid gray;
-
-                .text-wrapper {
-                    .text {
-                        margin: 3px 0 3px 20px;
-                        color: $color-normal;
-                    }
-                }
-
-                .data {
-                    margin: 6px 0 6px 0;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-
-                    .icon {
-                        margin: 0 15px 0 20px;
-                        width: 30px;
-                        height: 30px;
-
-                    }
-
-                    .note {
-                        flex-grow: 1;
-                        text-align: center;
-                    }
-
-                    .class {
-                        margin-left: 5px;
-                    }
-
-                    div {
-                        margin: 0 20px 0 15px;
-                        text-align: center;
-                        line-height: 30px;
-                    }
-                }
-
-            }
-        }
-
-        .pay {
-            color: $color-lightred;
-
-            .payText {
-                font-size: 14px;
-            }
-
-            .data-wrapper {
-                border-bottom: 0.5px solid gray;
-
-                .text-wrapper {
-                    .text {
-                        margin: 3px 0 3px 20px;
-                        color: $color-normal;
-                    }
-                }
-
-                .data {
-                    margin: 6px 0 6px 0;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-
-                    .icon {
-                        margin: 0 15px 0 20px;
-                        width: 30px;
-                        height: 30px;
-
-                    }
-
-                    .note {
-                        flex-grow: 1;
-                        text-align: center;
-                    }
-
-                    .class {
-                        margin-left: 5px;
-                    }
-
-                    div {
-                        margin: 0 20px 0 15px;
-                        text-align: center;
-                        line-height: 30px;
-                    }
-                }
-            }
-        }
-    }
+    @import "tagRecordList.scss";
 </style>
