@@ -70,7 +70,6 @@
     })
     export default class TagRecordList extends Vue {
         @Prop() data!: {};
-        @Prop() option!: {};
         @Prop() top!: [];
 
         get totalOptions() {

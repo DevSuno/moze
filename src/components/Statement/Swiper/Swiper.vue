@@ -25,7 +25,7 @@
     import TagRecordList from '@/components/Statement/Swiper/SwiprIterm/Tag/TagRecordList.vue';
     import DateRecordList from '@/components/Statement/Swiper/SwiprIterm/DateRecordList.vue';
     import IcoRecordList from '@/components/Statement/Swiper/SwiprIterm/IcoRecordList.vue';
-    import OutputRecordList from '@/components/Statement/Swiper/SwiprIterm/OutputRecordList.vue';
+    import OutputRecordList from '@/components/Statement/Swiper/SwiprIterm/Output/OutputRecordList.vue';
 
     @Component({
         components: {
