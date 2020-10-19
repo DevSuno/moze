@@ -48,10 +48,6 @@
         @Prop() data!: {};
         @Prop() payMonthTotal!: []
         @Prop() earningMonthTotal!: []
-mounted(){
-    console.log(this.payMonthTotal)
-    console.log(this.earningMonthTotal);
-}
         get dateOptions(){
             return {
                 tooltip: {

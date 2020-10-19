@@ -104,10 +104,9 @@
 
         get outputRecordList() {
             return (this.recordList.concat([])).sort((a: recordItem, b: recordItem) => {
-                return a.output > b.output ? -1 : 1;
+                return parseInt(a.output)> parseInt(b.output) ? -1 : 1;
             });
         }
-
         get topRecordList() {
             return this.outputRecordList.slice(0, 3);
         }
