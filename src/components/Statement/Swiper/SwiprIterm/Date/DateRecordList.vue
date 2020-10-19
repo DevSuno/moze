@@ -48,17 +48,20 @@
         @Prop() data!: {};
         @Prop() payMonthTotal!: []
         @Prop() earningMonthTotal!: []
-
+mounted(){
+    console.log(this.payMonthTotal)
+    console.log(this.earningMonthTotal);
+}
         get dateOptions(){
             return {
                 tooltip: {
                     trigger: 'axis'
                 },
                 grid: {
-                    left: '3%',
+                    left: '5%',
                     right: '3%',
                     top: '3%',
-                    bottom: '3%',
+                    bottom: '5%',
                     containLabel: true
                 },
                 xAxis: {
@@ -85,14 +88,12 @@
                     {
                         name: '收入',
                         type: 'line',
-                        stack: '总量',
                         data: this.earningMonthTotal,
                         color: '#9fd26a',
                     },
                     {
                         name: '支出',
                         type: 'line',
-                        stack: '总量',
                         data: this.payMonthTotal,
                         color:'#ea5e69'
                     },
@@ -106,6 +107,7 @@
         isEarning(detail: any) {
             return detail.selectedTag === '收入';
         }
+
     }
 </script>
 

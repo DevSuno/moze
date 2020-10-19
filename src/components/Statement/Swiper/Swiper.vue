@@ -5,8 +5,8 @@
         </swiper-slide>
         <swiper-slide>
             <DateRecordList :data="this.childPages[1]"
-                            :payMonthTotal="this.payMonthTotal"
-                            :earningMonthTotal="this.earningMonthTotal"></DateRecordList>
+                            :earningMonthTotal="this.earningMonthTotal"
+                            :payMonthTotal="this.payMonthTotal"></DateRecordList>
         </swiper-slide>
         <swiper-slide>
             <IcoRecordList :data="this.childPages[2]"></IcoRecordList>
@@ -23,7 +23,6 @@
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
     import SwiperOptions from '@/components/Statement/Swiper/SwiperOptions';
-    import clone from '@/lib/clone';
     import TagRecordList from '@/components/Statement/Swiper/SwiprIterm/Tag/TagRecordList.vue';
     import DateRecordList from '@/components/Statement/Swiper/SwiprIterm/Date/DateRecordList.vue';
     import IcoRecordList from '@/components/Statement/Swiper/SwiprIterm/IcoRecordList.vue';
@@ -58,16 +57,13 @@
 
         payMonthArr: string[] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
         earningMonthArr: string [] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
+
         get recordList() {
             return this.$store.state.recordList;
         }
 
-        get newRecordList() {
-            return clone(this.recordList);
-        }
-
         get pay() {
-            return this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '支出')
+            return this.recordList.filter((i: { selectedTag: string }) => i.selectedTag === '支出')
                 .sort((a: any, b: any) => {
                         return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
                     }
@@ -81,7 +77,7 @@
         }
 
         get earning() {
-            return this.newRecordList.filter((i: { selectedTag: string }) => i.selectedTag === '收入')
+            return this.recordList.filter((i: { selectedTag: string }) => i.selectedTag === '收入')
                 .sort((a: any, b: any) => {
                         return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
                     }
@@ -95,51 +91,43 @@
         }
 
         get dateRecordList() {
-            return this.newRecordList.sort((a: recordItem, b: recordItem) => {
+            return (this.recordList.concat([])).sort((a: recordItem, b: recordItem) => {
                 return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();
             });
         }
 
         get icoRecordList() {
-            return this.newRecordList.sort((a: recordItem, b: recordItem) => {
+            return (this.recordList.concat([])).sort((a: recordItem, b: recordItem) => {
                 return a.selectedIco > b.selectedIco ? 1 : -1;
             });
         }
 
         get outputRecordList() {
-            return this.newRecordList.sort((a: recordItem, b: recordItem) => {
+            return (this.recordList.concat([])).sort((a: recordItem, b: recordItem) => {
                 return a.output > b.output ? -1 : 1;
             });
         }
 
         get topRecordList() {
-            return this.outputRecordList.splice(0, 3);
+            return this.outputRecordList.slice(0, 3);
         }
 
         get payMonthTotal() {
             this.pay.forEach((i: { selectedDate: string; output: string }) => {
                 const index = new Date(i.selectedDate).getMonth();
                 this.payMonthArr[index] = (parseInt(this.payMonthArr[index]) + parseInt(i.output)) + '';
-                console.log(i.output);
             });
-            return this.payMonthArr
+            return this.payMonthArr;
         }
 
         get earningMonthTotal() {
             this.earning.forEach((i: { selectedDate: string; output: string }) => {
                 const index = new Date(i.selectedDate).getMonth();
-                console.log(i.output);
                 this.earningMonthArr[index] = (parseInt(this.earningMonthArr[index]) + parseInt(i.output)) + '';
             });
-            return this.earningMonthArr
+            return this.earningMonthArr;
         }
 
-
-        mounted() {
-            console.log(this.payMonthTotal);
-            console.log(this.earningMonthTotal);
-            console.log(this.newRecordList);
-        }
     }
 </script>
 
