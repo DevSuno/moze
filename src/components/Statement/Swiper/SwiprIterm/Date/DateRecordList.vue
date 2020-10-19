@@ -54,10 +54,11 @@
                     trigger: 'axis'
                 },
                 grid: {
-                    left: '5%',
-                    right: '3%',
+                    left: '10%',
+                    right: '1%',
                     top: '3%',
                     bottom: '5%',
+                    width:'85%',
                     containLabel: true
                 },
                 xAxis: {

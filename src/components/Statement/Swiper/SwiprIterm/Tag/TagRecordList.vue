@@ -2,17 +2,11 @@
     <div class="tagRecordList">
         <echarts :options="totalOptions" class="total">
         </echarts>
-        <div>
-            <span class="earning-yuan"></span>
-            {{'收入' + this.data.tagRecordList[2] + '元'}}
-            <span class="pay-yuan"></span>
-            {{'支出' + this.data.tagRecordList[3] + '元'}}
-            {{'余额' + (this.data.tagRecordList[2] - this.data.tagRecordList[3]) + '元'}}
+        <div class="type">
+            <span class="balance"><span class="balance-yuan"></span>余额</span>
+            <span class="pay"><span class="pay-yuan"></span>支出</span>
+            <span class="earning"> <span class="earning-yuan"></span>收入</span>
         </div>
-
-
-        <echarts :options="topOptions" class="total">
-        </echarts>
         <div class="content">
             <div class="top">
                 <h4>Top &nbsp; &nbsp; 3</h4>
@@ -96,11 +90,11 @@
                     ]
                 },
                 grid: {
-                    top: '5%',
+                    top: '15%',
                     bottom: '10%',
-                    left: '25%',
-                    right: '10%',
-                    width: '50%',
+                    left: '22%',
+                    right: '3%',
+                    width: '66%',
                 },
                 xAxis: {
                     name: '元',
@@ -120,8 +114,12 @@
                     type: 'category',
                     //maxInterval: 300,
                     splitLine: { show: false },
+                    fontSize: '35',
                     axisLabel: {
-                        margin: 10,
+                        margin: 12,
+                        textStyle: {
+                            fontSize : 12      //更改坐标轴文字大小
+                        },
                         color: function (params: any, index: any) {
                             const colorList = ['#9fd26a', '#ea5e69', '#a4789f'];
                             return colorList[index];
@@ -137,7 +135,7 @@
                 series: [
                     {
                         type: 'bar',
-                        barWidth: 5,
+                        barWidth: 7,
                         encode: {
                             // Map the "sum" column to X axis.
                             x: 'sum',

@@ -6,9 +6,72 @@
     margin: 10px 0 10px 20px;
     color: #ffffff;
   }
-
+  .echarts {
+    height: 280px;
+  }
   .total {
     height: 80px;
+  }
+  .type {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #95949f;
+    text-align: center;
+
+    > .balance {
+      margin-left: 20px;
+      margin-right: 5px;
+      position: relative;
+      color: $color-greypurple;
+
+      > .balance-yuan {
+        position: absolute;
+        content: " ";
+        display: inline;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+        background: $color-greypurple;
+      }
+    }
+
+    > .pay {
+      margin-left: 20px;
+      margin-right: 5px;
+      position: relative;
+      color: $color-lightred;
+      > .pay-yuan {
+        position: absolute;
+        content: " ";
+        display: inline;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+        background: $color-lightred;
+      }
+    }
+
+    > .earning {
+      margin-left: 20px;
+      margin-right: 5px;
+      position: relative;
+      color: $color-lightgreen;
+      > .earning-yuan {
+        position: absolute;
+        content: " ";
+        display: inline;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        top: 5px;
+        left: -10px;
+        background: $color-lightgreen;
+      }
+    }
   }
 
   .content {
