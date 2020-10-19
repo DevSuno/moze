@@ -4,7 +4,9 @@
             <TagRecordList :data="this.childPages[0]" :top="this.topRecordList"></TagRecordList>
         </swiper-slide>
         <swiper-slide>
-            <DateRecordList :data="this.childPages[1]"></DateRecordList>
+            <DateRecordList :data="this.childPages[1]"
+                            :payMonthTotal="this.payMonthTotal"
+                            :earningMonthTotal="this.earningMonthTotal"></DateRecordList>
         </swiper-slide>
         <swiper-slide>
             <IcoRecordList :data="this.childPages[2]"></IcoRecordList>
@@ -48,12 +50,14 @@
         */
 
         childPages: Record<string, any> = [
-            { tagRecordList: [this.earning, this.pay ,this.earningTotal,this.payTotal] },
+            { tagRecordList: [this.earning, this.pay, this.earningTotal, this.payTotal] },
             { dateRecordList: this.dateRecordList },
             { icoRecordList: this.icoRecordList },
             { outputRecordList: this.outputRecordList }
         ];
 
+        payMonthArr: string[] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
+        earningMonthArr: string [] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
         get recordList() {
             return this.$store.state.recordList;
         }
@@ -69,8 +73,9 @@
                     }
                 );
         }
-        get payTotal(){
-            return     this.pay.reduce((sum: number, item: { output: string }) => {
+
+        get payTotal() {
+            return this.pay.reduce((sum: number, item: { output: string }) => {
                 return sum + Number(item.output);
             }, 0);
         }
@@ -107,8 +112,33 @@
             });
         }
 
-        get topRecordList (){
-            return this.outputRecordList.splice(0,3)
+        get topRecordList() {
+            return this.outputRecordList.splice(0, 3);
+        }
+
+        get payMonthTotal() {
+            this.pay.forEach((i: { selectedDate: string; output: string }) => {
+                const index = new Date(i.selectedDate).getMonth();
+                this.payMonthArr[index] = (parseInt(this.payMonthArr[index]) + parseInt(i.output)) + '';
+                console.log(i.output);
+            });
+            return this.payMonthArr
+        }
+
+        get earningMonthTotal() {
+            this.earning.forEach((i: { selectedDate: string; output: string }) => {
+                const index = new Date(i.selectedDate).getMonth();
+                console.log(i.output);
+                this.earningMonthArr[index] = (parseInt(this.earningMonthArr[index]) + parseInt(i.output)) + '';
+            });
+            return this.earningMonthArr
+        }
+
+
+        mounted() {
+            console.log(this.payMonthTotal);
+            console.log(this.earningMonthTotal);
+            console.log(this.newRecordList);
         }
     }
 </script>

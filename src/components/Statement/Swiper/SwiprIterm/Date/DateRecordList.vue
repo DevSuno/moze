@@ -1,5 +1,7 @@
 <template>
     <div class="dateRecordList">
+        <echarts :options="dateOptions" class="echarts">
+        </echarts>
         <div class="type">
             <span class="balance"><span class="balance-yuan"></span>余额</span>
             <span class="pay"><span class="pay-yuan"></span>支出</span>
@@ -36,11 +38,67 @@
 <script lang="ts">
     import Vue from 'vue';
     import { Component, Prop } from 'vue-property-decorator';
+    import Echarts from '@/components/Statement/echarts.vue';
 
-    @Component
+    @Component({
+        components: { Echarts }
+    })
+
     export default class DateRecordList extends Vue {
         @Prop() data!: {};
+        @Prop() payMonthTotal!: []
+        @Prop() earningMonthTotal!: []
 
+        get dateOptions(){
+            return {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                grid: {
+                    left: '3%',
+                    right: '3%',
+                    top: '3%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    splitLine: { show: false },
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+                    axisLine:{
+                        lineStyle:{
+                            color: '#fff',
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    splitLine: { show: false },
+                    axisLine:{
+                        lineStyle:{
+                            color: '#fff',
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: '收入',
+                        type: 'line',
+                        stack: '总量',
+                        data: this.earningMonthTotal,
+                        color: '#9fd26a',
+                    },
+                    {
+                        name: '支出',
+                        type: 'line',
+                        stack: '总量',
+                        data: this.payMonthTotal,
+                        color:'#ea5e69'
+                    },
+                ]
+            }
+        }
         isPay(detail: any) {
             return detail.selectedTag === '支出';
         }

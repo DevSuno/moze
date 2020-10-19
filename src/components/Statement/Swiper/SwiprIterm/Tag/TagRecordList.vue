@@ -2,6 +2,17 @@
     <div class="tagRecordList">
         <echarts :options="totalOptions" class="total">
         </echarts>
+        <div>
+            <span class="earning-yuan"></span>
+            {{'收入' + this.data.tagRecordList[2] + '元'}}
+            <span class="pay-yuan"></span>
+            {{'支出' + this.data.tagRecordList[3] + '元'}}
+            {{'余额' + (this.data.tagRecordList[2] - this.data.tagRecordList[3]) + '元'}}
+        </div>
+
+
+        <echarts :options="topOptions" class="total">
+        </echarts>
         <div class="content">
             <div class="top">
                 <h4>Top &nbsp; &nbsp; 3</h4>
@@ -70,6 +81,7 @@
     })
     export default class TagRecordList extends Vue {
         @Prop() data!: {};
+        @Prop() option!: {};
         @Prop() top!: [];
 
         get totalOptions() {
@@ -80,6 +92,7 @@
                         [this.data.tagRecordList[2], '收入'],
                         [this.data.tagRecordList[3], '支出'],
                         [(this.data.tagRecordList[2] - this.data.tagRecordList[3]), '余额'],
+
                     ]
                 },
                 grid: {
@@ -149,14 +162,15 @@
                                 随机显示
                                 color:function(d){
                                     return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);
-                                }
-                                */
-                                 //定制显示（按顺序）
+                                }*/
+
+                                /*定制显示（按顺序）*/
                                 color: function (params: any) {
                                     const colorList = ['#9fd26a', '#ea5e69', '#a4789f'];
                                     return colorList[params.dataIndex];
                                 }
                             },
+
                         },
                     }
                 ]
@@ -175,10 +189,6 @@
             return output.selectedTag === '收入';
         }
 
-        mounted() {
-            console.log('1');
-            console.log(this.top);
-        }
     }
 
 </script>
