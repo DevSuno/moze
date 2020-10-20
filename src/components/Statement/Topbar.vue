@@ -1,6 +1,6 @@
 <template>
     <div class="topbar">
-        <span class="text">每月报表</span>
+        <span class="text">图表报表</span>
     </div>
 </template>
 
@@ -17,6 +17,16 @@
 <style lang="scss" scoped>
     .topbar {
         margin-top: 20px;
+        span {
+            animation: rainbow 20s alternate infinite forwards;
+        }
+        @keyframes rainbow {
+            @for $i from 0 through 20 {
+                #{percentage($i * 0.05)} {
+                    color: hsl(random(360%), 75, 75);
+                }
+            }
+        }
         > .text{
             display: block;
             text-align: center;

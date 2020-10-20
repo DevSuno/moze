@@ -1,10 +1,10 @@
 <template>
     <div class="topbar">
-        <router-link to="/record" >
+        <router-link to="/record">
             <Icon class="icon" name="back"></Icon>
         </router-link>
         <span class="text">新增记录</span>
-        <Icon class="icon" name="true" @click="ok"></Icon>
+        <Icon @click="ok" class="icon" name="true"></Icon>
 
     </div>
 </template>
@@ -17,7 +17,7 @@
     export default class Topbar extends Vue {
 
         ok() {
-            this.$emit('update')
+            this.$emit('update');
         }
     }
 </script>
@@ -38,6 +38,14 @@
 
         > .text {
             font-size: 18px;
+            animation: rainbow 20s alternate infinite forwards;
+            @keyframes rainbow {
+                @for $i from 0 through 20 {
+                    #{percentage($i * 0.05)} {
+                        color: hsl(random(360%), 75, 75);
+                    }
+                }
+            }
 
         }
 

@@ -19,6 +19,7 @@
             this.eventBus.$emit("updateSwitch",)
         }
 
+
     }
 </script>
 
@@ -36,6 +37,16 @@
         height: 20px;
         padding-left:12px;
 
+    }
+    span {
+        animation: rainbow 20s alternate infinite forwards;
+    }
+    @keyframes rainbow {
+        @for $i from 0 through 20 {
+            #{percentage($i * 0.05)} {
+                color: hsl(random(360%), 75, 75);
+            }
+        }
     }
     > .text {
         font-size: 18px;

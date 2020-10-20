@@ -27,7 +27,7 @@
                         name: '类别',
                         type: 'pie',
                         radius: '70%',
-                        center: ['45%', '65%'],
+                        center: ['45%', '45%'],
                         data: [
                             {value: this.data.icoRecordList[1], name: '支出'},
                             {value: this.data.icoRecordList[2], name: '余额'},
