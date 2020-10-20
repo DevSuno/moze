@@ -50,8 +50,8 @@
 
         childPages: Record<string, any> = [
             { tagRecordList: [this.earning, this.pay, this.earningTotal, this.payTotal] },
-            { dateRecordList: this.dateRecordList },
-            { icoRecordList: this.icoRecordList },
+            { dateRecordList: this.dateRecordList,},
+            { icoRecordList: [ this.earningTotal, this.payTotal , this.balance] },
             { outputRecordList: this.outputRecordList }
         ];
 
@@ -89,7 +89,9 @@
                 return sum + Number(item.output);
             }, 0);
         }
-
+        get balance (){
+            return this.earningTotal-this.payTotal
+        }
         get dateRecordList() {
             return (this.recordList.concat([])).sort((a: recordItem, b: recordItem) => {
                 return new Date(b.selectedDate).getTime() - new Date(a.selectedDate).getTime();

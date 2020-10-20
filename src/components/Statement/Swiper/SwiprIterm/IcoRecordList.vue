@@ -1,32 +1,60 @@
 <template>
-    <div class="">
-        <div class="echarts"></div>
-        <div class="content" >
-            <h3 >类别、ICO</h3>
-            <span class="earning-yuan"></span>
-            <span>收入</span>
-            <span class="pay-yuan"></span>
-            <span>支出</span>
-<!--            <Icon name="'ico.selectedIco'"
-                  v-for="(ico ,index) in this.data.icoRecordList " :key="index"></Icon>
-            {{ico.selectedIco}}-->
-        </div>
+    <div class="ico">
+        <echarts :options="Options" class="total">
+        </echarts>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
     import { Component, Prop } from 'vue-property-decorator';
+    import Echarts from '@/components/Statement/echarts.vue';
 
-    @Component
+    @Component({
+        components: { Echarts }
+    })
     export default class IcoRecordList extends Vue {
         @Prop() data!: {};
-/*mounted(){
-    console.log(this.data.icoRecordList.selectedIco);
-}*/
+        get Options(){
+            return {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+                },
+                color:['#9fd26a', '#ea5e69', '#a4789f'],
+                series: [
+                    {
+                        name: '类别',
+                        type: 'pie',
+                        radius: '70%',
+                        center: ['45%', '65%'],
+                        data: [
+                            {value: this.data.icoRecordList[1], name: '支出'},
+                            {value: this.data.icoRecordList[2], name: '余额'},
+                        ],
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+
+        }
+        mounted(){
+            console.log(this.data);
+        }
     }
 </script>
 
 <style lang="scss" scoped>
-
+.ico {
+    .total {
+        width: 100vw;
+        height: 250px;
+    }
+}
 </style>
