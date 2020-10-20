@@ -9,8 +9,12 @@
                 金额
             </span>
             <span :class="[ {pay : this.balance < 0},
-                            {earning : this.balance >= 0}]">
+                            {earning : this.balance >= 0}]"
+                  v-if="isSwitch">
                 {{"￥" + this.balance}}
+            </span>
+            <span v-else>
+                *****
             </span>
         </div>
     </div>
@@ -24,11 +28,19 @@
     export default class Money extends Vue {
         @Inject() eventBus!: Vue;
         balance = 0;
+        switch = false;
 
-        created() {
-            this.eventBus.$on('updateBalance', (balance: number) => this.balance = balance);
+        get isSwitch() {
+            return this.switch;
         }
-
+        created() {
+            this.eventBus.$on('updateBalance',
+                (balance: number) => this.balance = balance);
+        }
+        mounted(){
+            this.eventBus.$on('updateSwitch',
+                () => this.switch = !this.switch);
+        }
     }
 </script>
 

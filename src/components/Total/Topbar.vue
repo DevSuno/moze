@@ -1,7 +1,7 @@
 <template>
     <div class="topbar">
 
-        <Icon name="eye"/>
+        <Icon name="eye" @click="tabSwitch"/>
         <span class="text">账户总览</span>
         <span class="placeholder"></span>
 
@@ -10,10 +10,14 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Inject } from 'vue-property-decorator';
 
     @Component
     export default class Topbar extends Vue {
+        @Inject() eventBus!: Vue;
+        tabSwitch(){
+            this.eventBus.$emit("updateSwitch",)
+        }
 
     }
 </script>
