@@ -1,9 +1,12 @@
 <template>
     <div class="calendar">
-        <div class="title">
-            {{time.year}}年
-            {{formatDate(time.month +1)}}月
-            {{formatDate(time.day)}}日
+        <div class="rainbow">
+            <span>{{time.year}}</span>
+            <span>年</span>
+            <span>{{formatDate(time.month +1)}}</span>
+            <span>月</span>
+            <span>{{formatDate(time.day)}}</span>
+            <span>日</span>
         </div>
         <div class="week">
             <span :key="index" class="dayOfWeek" v-for="(day,index) in week">{{"周"+day}}</span>
@@ -41,6 +44,7 @@
         calendarArr: Array<object> = [];
 
         mounted() {
+            this.rainbow()
             if (this.weekDay === 5 || this.weekDay === 6 || this.weekDay === 7) {
                 this.monthDayNum = 42;
             } else {
@@ -54,6 +58,15 @@
                 });
             }
         }
+        rainbow(){
+            const letters = (document.querySelectorAll('.rainbow span') as any);
+            letters.forEach((span: { style: { animationDelay: string } }, i: number) => {
+                span.style.animationDelay = `${-20 + i * 0.2}s`;
+            });
+        }
+
+
+
         currentMonthMaxDay = () => {
             const date = new Date();
             return new Date(date.getFullYear(), date.getMonth(), 0).getDate();

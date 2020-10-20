@@ -1,25 +1,26 @@
 @import "~@/assets/style/helper.scss";
+@keyframes rainbow {
+  @for $i from 0 through 20 {
+    #{percentage($i * 0.05)} {
+      color: hsl(random(360%), 75, 75);
+    }
+  }
+}
 .calendar {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 100vw;
-
-  > .title {
+  > .rainbow {
     font-size: 18px;
     text-align: center;
-    animation: rainbow 20s alternate infinite forwards;
-    @keyframes rainbow {
-      @for $i from 0 through 20 {
-        #{percentage($i * 0.05)} {
-          color: hsl(random(360%), 75, 75);
-        }
-      }
+
+    > span {
+      font-size: 18px;
+      animation: rainbow 20s alternate infinite forwards;
     }
-
   }
-
   > .week {
     padding: 8px 8px;
     display: flex;
