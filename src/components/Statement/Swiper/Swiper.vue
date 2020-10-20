@@ -19,7 +19,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Inject, Provide } from 'vue-property-decorator';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
     import SwiperOptions from '@/components/Statement/Swiper/SwiperOptions';
@@ -104,9 +104,10 @@
 
         get outputRecordList() {
             return (this.recordList.concat([])).sort((a: recordItem, b: recordItem) => {
-                return parseInt(a.output)> parseInt(b.output) ? -1 : 1;
+                return parseInt(a.output) > parseInt(b.output) ? -1 : 1;
             });
         }
+
         get topRecordList() {
             return this.outputRecordList.slice(0, 3);
         }

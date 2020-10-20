@@ -11,7 +11,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Provide } from 'vue-property-decorator';
     import Topbar from '@/components/Total/Topbar.vue';
     import Money from '@/components/Total/Money.vue';
     import Statistics from '@/components/Total/Statistics.vue';
@@ -21,6 +21,7 @@
         components: { Type, Statistics, Money, Topbar }
     })
     export default class Total extends Vue {
+        @Provide() eventBus = new Vue();
 
     }
 </script>
