@@ -74,7 +74,9 @@
         components: { Echarts }
     })
     export default class TagRecordList extends Vue {
-        @Prop() data!: {};
+        @Prop() data!: {
+            tagRecordList: string | any | number | string;
+        };
         @Prop() option!: {};
         @Prop() top!: [];
 

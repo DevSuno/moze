@@ -14,7 +14,9 @@
         components: { Echarts }
     })
     export default class IcoRecordList extends Vue {
-        @Prop() data!: {};
+        @Prop() data!: {
+            icoRecordList: any;
+        };
         get Options(){
             return {
                 tooltip: {
