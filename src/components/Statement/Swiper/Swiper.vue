@@ -1,6 +1,7 @@
 <template>
     <swiper :options="swiperOption" class="swiper"
             @slideChangeTransitionEnd="slideChangeTransitionEnd"
+
             ref="mySwiper"
     >
         <swiper-slide>
@@ -65,20 +66,44 @@
         payMonthArr: string[] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
         earningMonthArr: string [] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
 
-
-/*        slideChangeTransitionEnd(swiper: any){
-
+/*        slideChangeTransitionStart(){
+            this.index = this.index -1
         }*/
 
+        slideChangeTransitionEnd(swiper: any) {
+            console.log('transiton end')
+            console.log(swiper.realIndex);
+            //console.log(swiper.swipeDirection);
+            //console.log(this.index);//0
+            this.eventBus.$emit('changeIndex', swiper.realIndex)
+            // if (swiper.swipeDirection === 'next') {
+            //     this.index = (this.index + 1 )%4
+            //     console.log('page')
+            //     console.log(this.index);//0
+            //     this.eventBus.$emit('changeIndex', swiper.realIndex)
+            // }
+            // if (swiper.swipeDirection === 'prev') {
+            //     this.index = (this.index -1)%4
+            //     console.log('page')
+            //     console.log(this.index)
+            //     this.eventBus.$emit('changeIndex', this.index)
+            // }
+
+        }
+
         mounted(){
+            window.mySwiper = this.mySwiper
             this.eventBus.$on('updateIndex',(index: number)=>{
-                this.index = index + 1 ;
-                this.mySwiper.slideTo(this.index, 0)
+                console.log('接受到 index', index)
+                //this.index = index;
+                this.mySwiper.slideTo(index+1, 100)
+
             })
         }
 
         // TS 不识别，没办法
         get mySwiper(){
+
             return this.$refs.mySwiper.$swiper
         }
         get recordList() {
