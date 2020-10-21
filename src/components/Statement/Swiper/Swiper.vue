@@ -66,29 +66,10 @@
         payMonthArr: string[] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
         earningMonthArr: string [] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
 
-/*        slideChangeTransitionStart(){
-            this.index = this.index -1
-        }*/
-
         slideChangeTransitionEnd(swiper: any) {
             console.log('transiton end')
             console.log(swiper.realIndex);
-            //console.log(swiper.swipeDirection);
-            //console.log(this.index);//0
             this.eventBus.$emit('changeIndex', swiper.realIndex)
-            // if (swiper.swipeDirection === 'next') {
-            //     this.index = (this.index + 1 )%4
-            //     console.log('page')
-            //     console.log(this.index);//0
-            //     this.eventBus.$emit('changeIndex', swiper.realIndex)
-            // }
-            // if (swiper.swipeDirection === 'prev') {
-            //     this.index = (this.index -1)%4
-            //     console.log('page')
-            //     console.log(this.index)
-            //     this.eventBus.$emit('changeIndex', this.index)
-            // }
-
         }
 
         mounted(){

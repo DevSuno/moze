@@ -36,8 +36,6 @@
         mounted(){
             this.eventBus.$on('changeIndex',(index: number)=>{
                 this.selected = this.items[index]
-/*                console.log(index);
-                console.log(this.selected);*/
             })
         }
     }
