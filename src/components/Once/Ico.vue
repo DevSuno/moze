@@ -4,7 +4,7 @@
              class="pay"
              v-for="pay in payArr"
              v-show="tab === '支出'"
-             @click="changeSelectedIco(pay.name)">
+             @click="changeSelectedIco(pay.name, pay.text)">
             <Icon :name="pay.name"></Icon>
             <span class="text"
                   :class="[{selected: pay.name === selectedIco}]">

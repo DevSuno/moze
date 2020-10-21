@@ -1,5 +1,8 @@
 <template>
-    <swiper :options="swiperOption" class="swiper">
+    <swiper :options="swiperOption" class="swiper"
+            @slideChangeTransitionEnd="slideChangeTransitionEnd"
+            ref="mySwiper"
+    >
         <swiper-slide>
             <TagRecordList :data="this.childPages[0]" :top="this.topRecordList"></TagRecordList>
         </swiper-slide>
@@ -19,7 +22,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component, Inject, Provide } from 'vue-property-decorator';
+    import { Component, Inject, Provide, Watch } from 'vue-property-decorator';
     import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
     import 'swiper/swiper-bundle.css';
     import SwiperOptions from '@/components/Statement/Swiper/SwiperOptions';
@@ -39,6 +42,10 @@
         },
     })
     export default class Swiper2 extends Vue {
+        @Inject() eventBus!: Vue;
+
+        index = 0
+
         swiperOption: {} = SwiperOptions;
         /*
                 要传四个参数
@@ -58,6 +65,22 @@
         payMonthArr: string[] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
         earningMonthArr: string [] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
 
+
+/*        slideChangeTransitionEnd(swiper: any){
+
+        }*/
+
+        mounted(){
+            this.eventBus.$on('updateIndex',(index: number)=>{
+                this.index = index + 1 ;
+                this.mySwiper.slideTo(this.index, 0)
+            })
+        }
+
+        // TS 不识别，没办法
+        get mySwiper(){
+            return this.$refs.mySwiper.$swiper
+        }
         get recordList() {
             return this.$store.state.recordList;
         }

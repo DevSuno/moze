@@ -8,7 +8,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Provide } from 'vue-property-decorator';
     import Topbar from '@/components/Statement/Topbar.vue';
     import Timestamp from '@/components/Statement/Timestamp.vue';
     import Items from '@/components/Statement/Items.vue';
@@ -17,7 +17,7 @@
         components: { Swiper2,  Items, Timestamp, Topbar }
     })
     export default class Statement extends Vue {
-
+        @Provide() eventBus = new Vue();
     }
 </script>
 

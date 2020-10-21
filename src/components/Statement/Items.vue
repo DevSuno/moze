@@ -1,7 +1,9 @@
 <template>
     <div class="items">
-        <div :class="[{selected:true}]"
-             :key="item" class="item" v-for="item in items">
+        <div :class="[{selected: isClick(index)}]" :key="item"
+             @click="changeSelected(index)"
+             class="item"
+             v-for="(item, index) in items">
             {{item}}
         </div>
     </div>
@@ -9,16 +11,32 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Inject } from 'vue-property-decorator';
+    import index from '@/store';
 
     @Component
     export default class Items extends Vue {
+        @Inject() eventBus!: Vue;
+
+        selected = '总览';
+
         items: string[] = ['总览', '明细', '类别', '排行'];
+
+        isClick(index: number) {
+            return this.selected === this.items[index];
+        }
+        //改变选中的样式，更新 index
+        changeSelected(index: number) {
+            this.selected = this.items[index];
+            this.eventBus.$emit('updateIndex', index)
+            console.log(index);
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     @import "~@/assets/style/helper.scss";
+
     .items {
         margin: 20px 0 20px 0;
         display: flex;
