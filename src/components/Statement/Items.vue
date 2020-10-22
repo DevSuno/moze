@@ -30,7 +30,6 @@
         changeSelected(index: number) {
             this.selected = this.items[index];
 
-            console.log('点击了', index)
             this.eventBus.$emit('updateIndex', index)
         }
         mounted(){
@@ -53,7 +52,11 @@
             width: 25%;
             text-align: center;
             position: relative;
+            color: $color-normal;
 
+            &.selected {
+                color:$color-blueselected;
+            }
             &.selected::after {
                 position: absolute;
                 content: ' ';

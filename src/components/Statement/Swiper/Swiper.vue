@@ -67,18 +67,13 @@
         earningMonthArr: string [] = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',];
 
         slideChangeTransitionEnd(swiper: any) {
-            console.log('transiton end')
-            console.log(swiper.realIndex);
             this.eventBus.$emit('changeIndex', swiper.realIndex)
         }
 
         mounted(){
             window.mySwiper = this.mySwiper
             this.eventBus.$on('updateIndex',(index: number)=>{
-                console.log('接受到 index', index)
-                //this.index = index;
                 this.mySwiper.slideTo(index+1, 100)
-
             })
         }
 
