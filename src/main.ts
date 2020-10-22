@@ -16,3 +16,11 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+window.onload = function () {
+    setTimeout( function () {
+        window.scrollTo(0 , 20 )
+    },0)
+    if(document.documentElement.clientWidth > 500){
+        window.alert('请在手机端打开，以保证浏览效果')
+    }
+}
