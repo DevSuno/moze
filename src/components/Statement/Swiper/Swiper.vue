@@ -71,7 +71,6 @@
         }
 
         mounted(){
-            window.mySwiper = this.mySwiper
             this.eventBus.$on('updateIndex',(index: number)=>{
                 this.mySwiper.slideTo(index+1, 100)
             })
@@ -80,7 +79,7 @@
         // TS 不识别，没办法
         get mySwiper(){
 
-            return this.$refs.mySwiper.$swiper
+            return (this.$refs.mySwiper as Vue & {$swiper: any}).$swiper
         }
         get recordList() {
             return this.$store.state.recordList;
