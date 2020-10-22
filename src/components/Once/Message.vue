@@ -91,7 +91,7 @@
                 font-size: 18px;
                 margin: 4px 0;
                 text-align: right;
-                padding: 0px 10px;
+                padding: 5px 10px;
                 color: $color-blueselected;
             }
 
@@ -107,14 +107,18 @@
             .date {
                 width: 40vw;
                 padding: 5px 0;
+                font-size: 18px;
                 border: 1px solid $color-normal;
                 border-radius: 8px;
                 text-align: center;
+
             }
 
             .time {
                 width: 40vw;
                 padding: 5px 0;
+                font-size: 18px;
+
                 border: 1px solid $color-normal;
                 border-radius: 8px;
                 text-align: center;
