@@ -54,11 +54,10 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        min-height: 50px;
-        line-height: 33px;
-        font-size: 33px;
+        padding: 8px 0;
+        line-height: 34px;
+        font-size: 34px;
         background: $navbg;
-        position: relative;
 
         > .item {
             &:nth-child(2) {

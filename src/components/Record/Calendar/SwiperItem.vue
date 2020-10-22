@@ -128,6 +128,8 @@
     @import "~@/assets/style/helper.scss";
 
     .month {
+        margin-top: 50px;
+        padding-bottom: 50px;
         display: flex;
         max-width: 100vw;
         min-width: 14.2857%;
@@ -135,14 +137,15 @@
         flex-wrap: wrap;
 
         > span {
-            max-height: 30px;
-            min-width: 30px;
-            margin: 3px 10px;
+            height: 14.2857vw;
+            width: 14.2857vw;
             font-size: 12px;
             color: $color-gray;
-            text-align: center;
-            line-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
+            padding: 10px;
 
             &:nth-child(7n).month-class {
                 color: $color-graygreen;
@@ -155,12 +158,13 @@
             &.selected::before {
                 position: absolute;
                 content: ' ';
-                width: 30px;
-                height: 30px;
-                left: -3.5px;
-                top: -3.5px;
+                left: 7px;
+                right: 7px;
+                top: 7px;
+                bottom: 7px;
                 border: $color-blueborder;
                 border-radius: 50%;
+
             }
         }
 
@@ -171,6 +175,7 @@
         > .todayBg {
             background: $todayBg;
             border-radius: 50%;
+            background-clip: content-box;
 
         }
     }

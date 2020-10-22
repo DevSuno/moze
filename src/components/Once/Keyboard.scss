@@ -1,7 +1,7 @@
 @import "src/assets/style/helper";
 
 button {
-  width: 25vw;
+  min-width: 23vw;
   height: 42px;
   background: darken($bg, 5%);
   border: 0.3px solid $color-normal;
@@ -11,7 +11,7 @@ button {
 }
 
 .keyboard {
-  max-width: 100%;
+  min-width: 100%;
   position: absolute;
   bottom: 50px;
   display: flex;
@@ -38,19 +38,19 @@ button {
       max-width: 75vw;
 
       button {
-        margin: -0.5px 0 -0.5px -0.5px;
 
       }
 
     }
 
     .function {
-      min-width: 25vw;
+      margin-left: -10px;
+      max-width: 25vw;
       display: flex;
       flex-direction: column;
 
       .icon-warp {
-        width: 25.6vw;
+        width: 25vw;
         height: 42px;
         border: 0.3px solid $color-normal;
 

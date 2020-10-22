@@ -59,15 +59,15 @@
 
 <style lang="scss" scoped>
     @import "~@/assets/style/helper.scss";
-
+/*    left: 50%;
+            top: 400px;
+    margin-left: -50%;
+                    margin-top: -350px;*/
 
     .swiper {
         width: 100vw;
-        position: absolute;
-        left: 50%;
-        top: 70%;
-        margin-left: -190px;
-        margin-top: -350px;
+        position: relative;
+
 
         .swiper-slide {
             display: flex;
