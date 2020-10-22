@@ -4,13 +4,15 @@ import helper from '@/components/Record/Calendar/helper';
 
 Vue.use(Vuex)
 
-
+function format(number: any) {
+   return  number < 10 ? `0${number}`: number
+}
 const date = helper.getNewDate(new Date())
 const time = helper.getCurrentTime(new Date())
 export default new Vuex.Store({
   state: {
       selectedDate: date.year + '-' + (date.month + 1) + '-' + date.day,
-      currentTime: time.hours + ':' + time.minutes,
+      currentTime: format(time.hours) + ':' + format(time.minutes),
       recordList: localStorage.recordList?JSON.parse(localStorage.recordList):[]
   },
   mutations: {
