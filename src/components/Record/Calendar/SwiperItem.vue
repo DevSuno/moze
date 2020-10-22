@@ -22,6 +22,7 @@
     export default class SwiperItem extends Vue {
         @Prop() date!: { year: number; month: number; day: number };
 
+
         //选中日期
         get selectedDate() {
             return this.$store.state.selectedDate;
