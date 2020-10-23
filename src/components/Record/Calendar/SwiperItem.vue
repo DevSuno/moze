@@ -90,12 +90,32 @@
             } else if (date === 0) {
                 date = this.prevMonthEndDay();
             } else if (date === 1) {
-                date = this.dateObject.month + 1 + '月';
+               const ddd = this.dateObject.month + 1
+                if(ddd < 10){
+                    date = `0${ddd}` + '月';
+                }
+                if (ddd>= 10) {
+                    date = ddd + '月'
+                }
+
+
             } else if (date > this.currentMonthMaxDay()) {
                 if (date - this.currentMonthMaxDay() === 1) {
-                    date = (this.dateObject.month + 2) + '月';
+
+
+                    const temp = this.dateObject.month + 2
+                    if (temp < 12){
+                        date = (`0${temp}` + '月')
+                    }
+                    if (temp == 12){
+                       date =  (`${temp}` + '月')
+                    }
+                    if( temp > 12){
+                       date = (`0${temp-12}` + '月')
+                    }
+
                 } else {
-                    date = date - this.currentMonthMaxDay();
+                    date = date - this.currentMonthMaxDay()
                 }
             }
             return date < 10 ? `0${date}` : date;
