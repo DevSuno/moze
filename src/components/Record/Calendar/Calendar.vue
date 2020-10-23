@@ -1,11 +1,11 @@
 <template>
     <div class="calendar">
         <div class="rainbow">
-            <span>{{time.year}}</span>
+            <span>{{getTime[0]}}</span>
             <span>年</span>
-            <span>{{formatDate(time.month +1)}}</span>
+            <span>{{formatDate(getTime[1])}}</span>
             <span>月</span>
-            <span>{{formatDate(time.day)}}</span>
+            <span>{{formatDay(getTime[2])}}</span>
             <span>日</span>
         </div>
         <div class="week">
@@ -16,7 +16,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import { Component } from 'vue-property-decorator';
+    import { Component, Watch } from 'vue-property-decorator';
     import helper from '@/components/Record/Calendar/helper';
     @Component
     export default class Calendar extends Vue {
@@ -30,6 +30,11 @@
             '五',
             '六'
         ];
+        // 拿到选中的时间
+
+        get getTime (){
+            return (this.$store.state.selectedDate).split("-")
+        }
 
         //拿到现在时间
         time: { year: number; month: number; day: number } = helper.getNewDate(new Date());
@@ -43,7 +48,9 @@
         //日历数组
         calendarArr: Array<object> = [];
 
+
         mounted() {
+            console.log(this.getTime);
             this.rainbow()
             if (this.weekDay === 5 || this.weekDay === 6 || this.weekDay === 7) {
                 this.monthDayNum = 42;
@@ -80,6 +87,10 @@
             );
             return end.getDate();
         };
+        formatDay(date: number | string){
+            date = Number(date);
+            return date < 10 ? `0${date}` : date;
+        }
 
         formatDate = (date: number | string) => {
             date = Number(date);

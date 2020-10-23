@@ -120,6 +120,7 @@
 
         // 操作点击日期
         handleClickDay(day: { year: number; month: number; day: number }) {
+            console.log(day);
             this.$store.commit('handleClickDay', day);
         }
     }

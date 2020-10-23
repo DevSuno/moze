@@ -17,7 +17,8 @@ export default new Vuex.Store({
   },
   mutations: {
       handleClickDay(state,day: {year: number; month: number; day: number}) {
-          state.selectedDate = day.year+'-'+ (day.month+1) +'-'+day.day
+          const temp = helper.getNewDate(new Date(day.year,day.month,day.day))
+          state.selectedDate = temp.year+'-'+ (temp.month+1) +'-'+temp.day
       },
       updateRecordList(state , recordItem){
           state.recordList = state.recordList.concat(recordItem)
