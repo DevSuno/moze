@@ -3,7 +3,7 @@
         <span :class="[
                         {'month-class': isCurrentMonth(getDateHtml(day.year, day.month, day.day) )},
                         {'todayBg': isCurrentDay(getDateHtml(day.year, day.month, day.day))},
-                        {selected:day.year+'-'+ (day.month+1) +'-'+day.day === selectedDate}
+                        {selected: changeType(day) === selectedDate}
                     ]"
               :key="index"
               @click="handleClickDay(day)"
@@ -21,7 +21,6 @@
     @Component
     export default class SwiperItem extends Vue {
         @Prop() date!: { year: number; month: number; day: number };
-
 
         //选中日期
         get selectedDate() {
@@ -65,6 +64,12 @@
             return arr;
         }
 
+        changeType(day: any) {
+            const dateObject = helper.getDate(day.year, day.month, day.day);
+            const object = helper.getNewDate(dateObject);
+            return object.year + '-' + (object.month + 1) + '-' + object.day;
+        }
+
         currentMonthMaxDay = () => {
             const date = this.date;
             return new Date(date.year, date.month + 1, 0).getDate();
@@ -90,32 +95,30 @@
             } else if (date === 0) {
                 date = this.prevMonthEndDay();
             } else if (date === 1) {
-               const ddd = this.dateObject.month + 1
-                if(ddd < 10){
+                const ddd = this.dateObject.month + 1;
+                if (ddd < 10) {
                     date = `0${ddd}` + '月';
                 }
-                if (ddd>= 10) {
-                    date = ddd + '月'
+                if (ddd >= 10) {
+                    date = ddd + '月';
                 }
-
 
             } else if (date > this.currentMonthMaxDay()) {
                 if (date - this.currentMonthMaxDay() === 1) {
 
-
-                    const temp = this.dateObject.month + 2
-                    if (temp < 12){
-                        date = (`0${temp}` + '月')
+                    const temp = this.dateObject.month + 2;
+                    if (temp < 12) {
+                        date = (`0${temp}` + '月');
                     }
-                    if (temp == 12){
-                       date =  (`${temp}` + '月')
+                    if (temp == 12) {
+                        date = (`${temp}` + '月');
                     }
-                    if( temp > 12){
-                       date = (`0${temp-12}` + '月')
+                    if (temp > 12) {
+                        date = (`0${temp - 12}` + '月');
                     }
 
                 } else {
-                    date = date - this.currentMonthMaxDay()
+                    date = date - this.currentMonthMaxDay();
                 }
             }
             return date < 10 ? `0${date}` : date;
@@ -140,7 +143,6 @@
 
         // 操作点击日期
         handleClickDay(day: { year: number; month: number; day: number }) {
-            console.log(day);
             this.$store.commit('handleClickDay', day);
         }
     }

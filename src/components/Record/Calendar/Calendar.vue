@@ -50,7 +50,7 @@
 
 
         mounted() {
-            console.log(this.getTime);
+
             this.rainbow()
             if (this.weekDay === 5 || this.weekDay === 6 || this.weekDay === 7) {
                 this.monthDayNum = 42;
