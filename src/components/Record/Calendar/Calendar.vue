@@ -3,9 +3,9 @@
         <div class="rainbow">
             <span>{{getTime[0]}}</span>
             <span>年</span>
-            <span>{{formatDate(getTime[1])}}</span>
+            <span>{{format(getTime[1])}}</span>
             <span>月</span>
-            <span>{{formatDay(getTime[2])}}</span>
+            <span>{{format(getTime[2])}}</span>
             <span>日</span>
         </div>
         <div class="week">
@@ -87,7 +87,7 @@
             );
             return end.getDate();
         };
-        formatDay(date: number | string){
+        format(date: number | string){
             date = Number(date);
             return date < 10 ? `0${date}` : date;
         }
