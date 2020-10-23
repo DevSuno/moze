@@ -49,7 +49,7 @@
         inputContent(event: MouseEvent) {
             const button = (event.target as HTMLButtonElement);
             const input = button.textContent!.trim();
-            if (this.output.length === 10) {
+            if (this.output.length === 8) {
                 return;
             }
             if (this.output === '0') {
@@ -80,6 +80,11 @@
                 this.ok()
             }
         }
+        mounted(){
+            this.eventBus.$on('reset',()=> {
+                this.output = ''
+            })
+        }
 
         remove() {
             if (this.output.length === 1) {
@@ -101,6 +106,7 @@
             this.offKeyboard();
             this.$emit('update')
             this.output=''
+            this.updateOutput()
         }
 
         updateOutput() {

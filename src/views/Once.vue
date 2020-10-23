@@ -98,6 +98,14 @@
         }
 
         userOutput(output: string) {
+            if(output == "00"){
+                window.alert('请输入金额');
+                this.eventBus.$emit('reset')
+            }
+            if(output == "000"){
+                window.alert('请输入金额');
+                this.eventBus.$emit('reset')
+            }
             this.recordItem.output = output;
         }
 
@@ -118,12 +126,12 @@
                 if (this.recordItem.selectedIco !== '') {
                     if (this.recordItem.output !== '') {
                         const newRecordItem = clone(this.recordItem);
+
                         this.$store.commit('updateRecordList', newRecordItem);
                         window.localStorage.setItem('recordList',
                             JSON.stringify(this.$store.state.recordList));
                         this.eventBus.$emit('reset');
                         alert('已保存');
-                        console.log(this.$store.state.recordList);
                     } else {
                         window.alert('请输入金额');
                     }
