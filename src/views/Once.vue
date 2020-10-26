@@ -98,6 +98,10 @@
         }
 
         userOutput(output: string) {
+            if(output == "0"){
+                window.alert('请输入金额');
+                this.eventBus.$emit('reset')
+            }
             if(output == "00"){
                 window.alert('请输入金额');
                 this.eventBus.$emit('reset')
