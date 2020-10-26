@@ -107,8 +107,15 @@
                 if (date - this.currentMonthMaxDay() === 1) {
 
                     const temp = this.dateObject.month + 2;
-                    if (temp < 12) {
+                    if (temp <= 9) {
                         date = (`0${temp}` + '月');
+                    }
+
+                    if(temp == 10){
+                        date =(`${temp}` + '月')
+                    }
+                    if(temp == 11){
+                        date =(`${temp}` + '月')
                     }
                     if (temp == 12) {
                         date = (`${temp}` + '月');
